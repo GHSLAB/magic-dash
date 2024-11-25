@@ -28,6 +28,23 @@ def _list():
 def _create(name, path):
     """生成指定Dash应用项目模板到指定目录"""
 
+    # 交互式输入配置参数
+    click.echo(
+        click.style(
+            "\n请配置项目参数（直接回车使用默认值）：\n",
+            fg="yellow",
+        )
+    )
+
+    # 从命令行交互式输入获取项目名称
+    project_name = click.prompt(
+        "项目名称",
+        default=name,
+        type=click.STRING,
+        show_default=True,
+        confirmation_prompt=True,
+    )
+
     # 复制项目模板到指定目录
     shutil.copytree(
         src=os.path.join(
@@ -39,9 +56,17 @@ def _create(name, path):
         dst=os.path.join(path, name),
     )
 
+    # 重命名已生成项目名称
+    os.rename(
+        src=os.path.join(path, name),
+        dst=os.path.join(path, project_name),
+    )
+
     click.echo(
         click.style(
-            "已成功生成项目 {} 至目录 {}".format(name, os.path.join(path, name)),
+            "已成功生成项目 {} 至目录 {}".format(
+                name, os.path.join(path, project_name)
+            ),
             fg="green",
         )
     )

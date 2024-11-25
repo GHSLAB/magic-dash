@@ -66,7 +66,6 @@ magic-dash create --help
 ## 内置模板列表
 
 ```bash
-magic-dash list
 内置Dash应用项目模板：
 
 - magic-dash    基础多页面应用模板
