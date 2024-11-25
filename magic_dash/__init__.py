@@ -38,11 +38,7 @@ def _create(name, path):
 
     # 从命令行交互式输入获取项目名称
     project_name = click.prompt(
-        "项目名称",
-        default=name,
-        type=click.STRING,
-        show_default=True,
-        confirmation_prompt=True,
+        "项目名称", default=name, type=click.STRING, show_default=True
     )
 
     # 复制项目模板到指定目录

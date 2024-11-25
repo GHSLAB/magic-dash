@@ -51,6 +51,12 @@ magic-dash create --name magic-dash
 magic-dash create --name magic-dash --path 目标路径
 ```
 
+### 查看当前`magic-dash`版本
+
+```bash
+magic-dash --version
+```
+
 ### 查看命令说明
 
 ```bash
@@ -69,4 +75,5 @@ magic-dash create --help
 内置Dash应用项目模板：
 
 - magic-dash    基础多页面应用模板
+- simple-tool    单页面工具应用模板
 ```
