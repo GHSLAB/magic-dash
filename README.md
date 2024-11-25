@@ -17,6 +17,7 @@
 
 [安装](#install)<br>
 [使用](#usage)<br>
+[内置模板列表](#template-list)<br>
 
 <a name="install" ></a>
 
@@ -58,4 +59,15 @@ magic-dash --help
 magic-dash list --help
 
 magic-dash create --help
+```
+
+<a name="template-list" ></a>
+
+## 内置模板列表
+
+```bash
+magic-dash list
+内置Dash应用项目模板：
+
+- magic-dash    基础多页面应用模板
 ```
