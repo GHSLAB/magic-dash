@@ -1,14 +1,17 @@
-# magic-dash
+<p align="center">
+	<img src="./magic_dash/templates/magic-dash/assets/imgs/logo.svg" height=100></img>
+</p>
+<h1 align="center">magic-dash</h1>
+<div align="center">
 
-命令行工具，用于快捷生成一系列标准[Dash](https://github.com/plotly/dash)应用工程模板。
-
-<div>
-
-[![GitHub](https://shields.io/badge/license-MIT-informational)](https://github.com/CNFeffery/feffery-antd-components/blob/master/LICENSE)
-[![PyPI](https://img.shields.io/pypi/v/magic-dash.svg?color=dark-green)](https://pypi.org/project/feffery-dash-utils/)
+[![Pyhton](https://img.shields.io/badge/python-3.9%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue)](./setup.py)
+[![GitHub](https://shields.io/badge/license-MIT-informational)](https://github.com/CNFeffery/magic-dash/blob/main/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/magic-dash.svg?color=dark-green)](https://pypi.org/project/magic-dash/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 </div>
+
+命令行工具，用于快捷生成一系列标准[Dash](https://github.com/plotly/dash)应用工程模板。
 
 ## 目录
 
