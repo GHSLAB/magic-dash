@@ -2,8 +2,11 @@ import os
 import click
 import shutil
 
+__version__ = "0.1.1"
+
 
 @click.group(name="magic-dash")
+@click.version_option(version=__version__, message="%(version)s")
 def magic_dash():
     """magic-dash命令行工具"""
 
