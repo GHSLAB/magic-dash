@@ -75,21 +75,21 @@ def core_router(pathname):
     # 增加一点加载动画延迟^_^
     time.sleep(0.5)
 
+    # 初始化页面返回内容
+    page_content = fac.AntdAlert(
+        type="warning",
+        showIcon=True,
+        message=f"这里是{pathname}",
+        description="该页面尚未进行开发哦🤔~",
+    )
+
     # 以首页做简单示例
     if pathname == "/":
-        return [
-            index.render(),
-            pathname,
-            RouterConfig.side_menu_open_keys.get(pathname, dash.no_update),
-        ]
+        # 更新页面返回内容
+        page_content = index.render()
 
     return [
-        fac.AntdAlert(
-            type="warning",
-            showIcon=True,
-            message=f"这里是{pathname}",
-            description="该页面尚未进行开发哦🤔~",
-        ),
+        page_content,
         pathname,
         RouterConfig.side_menu_open_keys.get(pathname, dash.no_update),
     ]

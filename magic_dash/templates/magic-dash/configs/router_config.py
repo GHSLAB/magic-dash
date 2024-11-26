@@ -117,7 +117,7 @@ class RouterConfig:
         },
     ]
 
-    # 有效页面pathname地址列表
+    # 有效页面pathname地址 -> 页面标题映射字典
     valid_pathnames: dict = {
         "/": "首页",
         index_pathname: "首页",
