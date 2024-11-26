@@ -39,7 +39,7 @@ def render():
                                                 [
                                                     # 标题
                                                     fac.AntdText(
-                                                        "Magic Dash",
+                                                        BaseConfig.app_title,
                                                         strong=True,
                                                         style=style(fontSize=20),
                                                     ),
