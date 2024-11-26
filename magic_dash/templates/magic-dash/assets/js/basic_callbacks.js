@@ -1,7 +1,7 @@
 window.dash_clientside = Object.assign({}, window.dash_clientside, {
     clientside_basic: {
         // 处理核心页面侧边栏展开/收起
-        handleSideCollapse: (nClicks, originIcon, originHeaderSideStyle) => {
+        handleSideCollapse: (nClicks, originIcon, originHeaderSideStyle, coreConfig) => {
             // 若先前为展开状态
             if (originIcon === 'antd-menu-fold') {
                 return [
@@ -30,13 +30,13 @@ window.dash_clientside = Object.assign({}, window.dash_clientside, {
                     // 更新页首侧边容器样式
                     {
                         ...originHeaderSideStyle,
-                        width: 350
+                        width: coreConfig.core_side_width
                     },
                     // 更新页首标题样式
                     {},
                     // 更新侧边菜单容器样式
                     {
-                        width: 350
+                        width: coreConfig.core_side_width
                     },
                     // 更新侧边菜单折叠状态
                     false

@@ -26,6 +26,7 @@ app.clientside_callback(
     [
         State("core-side-menu-collapse-button-icon", "icon"),
         State("core-header-side", "style"),
+        State("core-page-config", "data"),
     ],
     prevent_initial_call=True,
 )

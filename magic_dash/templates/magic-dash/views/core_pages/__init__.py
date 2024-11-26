@@ -3,8 +3,8 @@ import feffery_antd_components as fac
 import feffery_utils_components as fuc
 from feffery_dash_utils.style_utils import style
 
-from configs import BaseConfig, RouterConfig
 from components import core_side_menu
+from configs import BaseConfig, RouterConfig, LayoutConfig
 
 # 令绑定的回调函数子模块生效
 import callbacks.core_pages_c  # noqa: F401
@@ -15,6 +15,11 @@ def render():
 
     return html.Div(
         [
+            # 核心页面常量参数数据
+            dcc.Store(
+                id="core-page-config",
+                data=dict(core_side_width=LayoutConfig.core_side_width),
+            ),
             # 核心页面独立路由监听
             dcc.Location(id="core-url"),
             # ctrl+k快捷键监听
@@ -73,7 +78,7 @@ def render():
                             justify="space-between",
                             align="center",
                             style=style(
-                                width=350,
+                                width=LayoutConfig.core_side_width,
                                 height="100%",
                                 paddingLeft=20,
                                 paddingRight=20,

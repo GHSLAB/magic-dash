@@ -3,7 +3,7 @@ import feffery_utils_components as fuc
 from feffery_dash_utils.style_utils import style
 
 # 路由配置参数
-from configs import RouterConfig
+from configs import RouterConfig, LayoutConfig
 
 
 def render():
@@ -30,5 +30,5 @@ def render():
         ),
         id="core-side-menu-affix",
         offsetTop=72.1,
-        style=style(width=350),
+        style=style(width=LayoutConfig.core_side_width),
     )
