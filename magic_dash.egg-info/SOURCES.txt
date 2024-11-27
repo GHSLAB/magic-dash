@@ -27,6 +27,7 @@ magic_dash/templates/magic-dash/components/__init__.py
 magic_dash/templates/magic-dash/components/core_side_menu.py
 magic_dash/templates/magic-dash/configs/__init__.py
 magic_dash/templates/magic-dash/configs/base_config.py
+magic_dash/templates/magic-dash/configs/layout_config.py
 magic_dash/templates/magic-dash/configs/router_config.py
 magic_dash/templates/magic-dash/utils/clear_pycache.py
 magic_dash/templates/magic-dash/views/__init__.py

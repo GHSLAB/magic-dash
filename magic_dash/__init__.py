@@ -2,7 +2,7 @@ import os
 import click
 import shutil
 
-__version__ = "0.1.1"
+__version__ = "0.1.3"
 
 
 @click.group(name="magic-dash")
@@ -18,8 +18,8 @@ def _list():
     """列出当前可生成的全部Dash应用项目模板"""
     click.echo("内置Dash应用项目模板：\n")
     # 为magic-dash输出添加高亮颜色
-    click.echo(click.style("- magic-dash    基础多页面应用模板", fg="blue"))
-    click.echo(click.style("- simple-tool    单页面工具应用模板", fg="blue"))
+    click.echo(click.style("- magic-dash    基础多页面应用模板", fg="bright_yellow"))
+    click.echo(click.style("- simple-tool    单页面工具应用模板", fg="bright_yellow"))
 
 
 @click.command(name="create")

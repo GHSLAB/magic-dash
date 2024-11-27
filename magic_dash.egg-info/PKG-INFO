@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: magic_dash
-Version: 0.1.1
+Version: 0.1.2
 Summary: A command-line tool for quickly generating standard Dash application projects.
 Home-page: https://github.com/CNFeffery/magic-dash
 Author: CNFeffery <fefferypzy@gmail.com>

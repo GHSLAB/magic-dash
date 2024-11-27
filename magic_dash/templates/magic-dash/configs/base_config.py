@@ -5,4 +5,4 @@ class BaseConfig:
     app_title: str = "Magic Dash"
 
     # 应用版本
-    app_version: str = "0.1.2"
+    app_version: str = "0.1.3"
