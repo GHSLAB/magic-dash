@@ -1,3 +1,6 @@
+from typing import List
+
+
 class BaseConfig:
     """应用基础配置参数"""
 
@@ -6,3 +9,10 @@ class BaseConfig:
 
     # 应用版本
     app_version: str = "0.1.3"
+
+    # 浏览器最低版本限制规则
+    min_browser_versions: List[dict] = [
+        {"browser": "Chrome", "version": 88},
+        {"browser": "Firefox", "version": 78},
+        {"browser": "Edge", "version": 100},
+    ]
