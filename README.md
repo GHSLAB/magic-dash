@@ -75,5 +75,6 @@ magic-dash create --help
 内置Dash应用项目模板：
 
 - magic-dash    基础多页面应用模板
+- magic-dash-pro    多页面+用户登录应用模板
 - simple-tool    单页面工具应用模板
 ```
