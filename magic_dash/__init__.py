@@ -2,7 +2,7 @@ import os
 import click
 import shutil
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 
 @click.group(name="magic-dash")
