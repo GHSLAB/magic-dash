@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="magic_dash",
-    version="0.1.3",
+    version="0.2.0",
     author_email="fefferypzy@gmail.com",
     homepage="https://github.com/CNFeffery/magic-dash",
     author="CNFeffery <fefferypzy@gmail.com>",
