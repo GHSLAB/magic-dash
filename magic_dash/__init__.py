@@ -19,6 +19,9 @@ def _list():
     click.echo("内置Dash应用项目模板：\n")
     # 为magic-dash输出添加高亮颜色
     click.echo(click.style("- magic-dash    基础多页面应用模板", fg="bright_yellow"))
+    click.echo(
+        click.style("- magic-dash-pro    多页面+用户登录应用模板", fg="bright_yellow")
+    )
     click.echo(click.style("- simple-tool    单页面工具应用模板", fg="bright_yellow"))
 
 
