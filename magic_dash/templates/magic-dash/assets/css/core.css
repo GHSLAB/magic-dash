@@ -28,3 +28,7 @@
 #core-side-menu .ant-menu-item-icon>span {
     font-size: 15px !important;
 }
+
+#core-side-menu .ant-menu-submenu {
+    font-size: 15px;
+}
