@@ -2,7 +2,20 @@ import os
 import click
 import shutil
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
+
+# 现有内置项目模板信息
+BUILTIN_TEMPLATES = {
+    "magic-dash": {
+        "description": "基础多页面应用模板",
+    },
+    "magic-dash-pro": {
+        "description": "多页面+用户登录应用模板",
+    },
+    "simple-tool": {
+        "description": "单页面工具应用模板",
+    },
+}
 
 
 @click.group(name="magic-dash")
@@ -18,11 +31,15 @@ def _list():
     """列出当前可生成的全部Dash应用项目模板"""
     click.echo("内置Dash应用项目模板：\n")
     # 为magic-dash输出添加高亮颜色
-    click.echo(click.style("- magic-dash    基础多页面应用模板", fg="bright_yellow"))
-    click.echo(
-        click.style("- magic-dash-pro    多页面+用户登录应用模板", fg="bright_yellow")
-    )
-    click.echo(click.style("- simple-tool    单页面工具应用模板", fg="bright_yellow"))
+    for template in BUILTIN_TEMPLATES.keys():
+        click.echo(
+            click.style(
+                "- {}    {}".format(
+                    template, BUILTIN_TEMPLATES[template]["description"]
+                ),
+                fg="bright_yellow",
+            )
+        )
 
 
 @click.command(name="create")
@@ -30,6 +47,16 @@ def _list():
 @click.option("--path", type=click.STRING, default=".", help="项目生成目标路径")
 def _create(name, path):
     """生成指定Dash应用项目模板到指定目录"""
+
+    # 检查目标项目模板是否存在
+    if name not in BUILTIN_TEMPLATES.keys():
+        click.echo(
+            click.style(
+                "不存在的Dash应用项目模板名称：{}".format(name),
+                fg="red",
+            )
+        )
+        return
 
     # 交互式输入配置参数
     click.echo(
