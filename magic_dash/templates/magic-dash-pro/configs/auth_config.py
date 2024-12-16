@@ -19,9 +19,9 @@ class AuthConfig:
 
     # 不同角色权限页面可访问性规则，其中'include'模式下自动会纳入首页，无需额外设置
     # type：规则类型，可选项有'all'（可访问全部页面）、'include'（可访问指定若干页面）、'exclude'（不可访问指定若干页面）
-    # pathnames：受type字段影响，定义可访问的指定若干页面/不可访问的指定若干页面，所对应RouterConfig.core_side_menu中菜单结构的key值
+    # keys：受type字段影响，定义可访问的指定若干页面/不可访问的指定若干页面，所对应RouterConfig.core_side_menu中菜单结构的key值
     pathname_access_rules: dict = {
         "admin": {"type": "all"},
-        # "normal": {"type": "exclude", "keys": ["/core/page2", "/core/page5"]},
-        "normal": {"type": "include", "keys": ["/core/page2", "/core/page5"]},
+        "normal": {"type": "exclude", "keys": ["/core/page2", "/core/page5"]},
+        # "normal": {"type": "include", "keys": ["/core/page2", "/core/page5"]},
     }
