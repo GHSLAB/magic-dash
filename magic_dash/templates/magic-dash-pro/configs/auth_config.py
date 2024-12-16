@@ -1,7 +1,7 @@
 class AuthConfig:
     """用户鉴权配置参数"""
 
-    # 角色权限类别列表
+    # 角色权限类别
     roles: dict = {
         "admin": {
             "description": "系统管理员",
