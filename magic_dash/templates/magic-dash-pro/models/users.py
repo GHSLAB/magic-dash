@@ -4,6 +4,7 @@ from playhouse.sqlite_ext import JSONField
 from werkzeug.security import check_password_hash
 
 from . import db, BaseModel
+from configs import AuthConfig
 from .exceptions import InvalidUserError, ExistingUserError
 
 
@@ -19,10 +20,8 @@ class Users(BaseModel):
     # 用户密码散列值
     password_hash = CharField()
 
-    # 用户角色，全部可选项：
-    #   'normal'（普通用户）
-    #   'admin'（管理员）
-    user_role = CharField(default="normal")
+    # 用户角色，全部可选项见configs.AuthConfig.roles
+    user_role = CharField(default=AuthConfig.normal_role)
 
     # 用户其他辅助信息，任意JSON格式，允许空值
     other_info = JSONField(null=True)

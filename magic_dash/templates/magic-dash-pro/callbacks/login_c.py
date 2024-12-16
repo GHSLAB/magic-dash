@@ -3,6 +3,7 @@ from dash import set_props, dcc
 from flask_login import login_user
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State
+from flask_principal import identity_changed, Identity
 
 from server import app, User
 from models.users import Users
@@ -102,7 +103,11 @@ def handle_login(nClicks, nSubmit, values, remember_me):
             user_role=match_user.user_role,
         )
 
+        # 会话登录状态切换
         login_user(new_user, remember=remember_me)
+
+        # 更新用户身份信息
+        identity_changed.send(app.server, identity=Identity(new_user.id))
 
         # 重定向至首页
         set_props(

@@ -7,7 +7,7 @@ class RouterConfig:
     # 与应用首页对应的pathname地址
     index_pathname: str = "/index"
 
-    # 核心页面侧边菜单结构
+    # 核心页面侧边菜单完整结构
     core_side_menu: List[dict] = [
         {
             "component": "ItemGroup",
@@ -130,9 +130,19 @@ class RouterConfig:
         "/core/page4": "示例页面4",
         "/core/page5": "示例页面5",
         "/core/page6": "示例页面6",
+        "/403-demo": "403状态页演示",
         "/404-demo": "404状态页演示",
         "/500-demo": "500状态页演示",
     }
+
+    # 无需权限校验的公开页面
+    public_pathnames: List[str] = [
+        "/login",
+        "/logout",
+        "/403-demo",
+        "/404-demo",
+        "/500-demo",
+    ]
 
     # 部分页面pathname对应要展开的子菜单层级
     side_menu_open_keys: dict = {

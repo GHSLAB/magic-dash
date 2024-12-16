@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash
 
 from server import app
 from models.users import Users
+from configs import AuthConfig
 
 
 def render():
@@ -19,6 +20,33 @@ def render():
         title=fac.AntdSpace([fac.AntdIcon(icon="antd-team"), "用户管理"]),
         width="65vw",
     )
+
+
+def refresh_user_manage_table_data():
+    """当前模块内复用工具函数，刷新用户管理表格数据"""
+
+    # 查询全部用户信息
+    all_users = Users.get_all_users()
+
+    return [
+        {
+            "user_id": item["user_id"],
+            "user_name": item["user_name"],
+            "user_role": {
+                "tag": AuthConfig.roles.get(item["user_role"])["description"],
+                "color": (
+                    "gold" if item["user_role"] == AuthConfig.admin_role else "blue"
+                ),
+            },
+            "操作": {
+                "content": "删除",
+                "type": "link",
+                "danger": True,
+                "disabled": item["user_role"] == AuthConfig.admin_role,
+            },
+        }
+        for item in all_users
+    ]
 
 
 @app.callback(
@@ -34,9 +62,6 @@ def render_user_manage_drawer(visible):
 
     if visible:
         time.sleep(0.5)
-
-        # 查询全部用户信息
-        all_users = Users.get_all_users()
 
         return [
             [
@@ -82,32 +107,7 @@ def render_user_manage_drawer(visible):
                                     },
                                 },
                             ],
-                            data=[
-                                {
-                                    "user_id": item["user_id"],
-                                    "user_name": item["user_name"],
-                                    "user_role": {
-                                        "tag": (
-                                            "系统管理员"
-                                            if item["user_role"] == "admin"
-                                            else "普通用户"
-                                        ),
-                                        "color": (
-                                            "gold"
-                                            if item["user_role"] == "admin"
-                                            else "blue"
-                                        ),
-                                    },
-                                    "操作": {
-                                        "content": "删除",
-                                        "type": "link",
-                                        "danger": True,
-                                        "disabled": item["user_name"] == "admin",
-                                    },
-                                    "raw": item,
-                                }
-                                for item in all_users
-                            ],
+                            data=refresh_user_manage_table_data(),
                             tableLayout="fixed",
                             filterOptions={
                                 "user_name": {
@@ -176,8 +176,8 @@ def open_add_user_modal(nClicks):
                     fac.AntdSelect(
                         id="user-manage-add-user-form-user-role",
                         options=[
-                            {"label": "普通用户", "value": "normal"},
-                            {"label": "系统管理员", "value": "admin"},
+                            {"label": value["description"], "value": key}
+                            for key, value in AuthConfig.roles.items()
                         ],
                         allowClear=False,
                     ),
@@ -188,7 +188,7 @@ def open_add_user_modal(nClicks):
             key=str(uuid.uuid4()),  # 强制刷新
             enableBatchControl=True,
             layout="vertical",
-            values={"user-manage-add-user-form-user-role": "normal"},
+            values={"user-manage-add-user-form-user-role": AuthConfig.normal_role},
             style=style(marginTop=32),
         ),
     ]
@@ -259,38 +259,10 @@ def handle_add_user(okCounts, values):
                 },
             )
 
-            # 查询全部用户信息
-            all_users = Users.get_all_users()
-
             # 刷新用户列表
             set_props(
                 "user-manage-table",
-                {
-                    "data": [
-                        {
-                            "user_id": item["user_id"],
-                            "user_name": item["user_name"],
-                            "user_role": {
-                                "tag": (
-                                    "系统管理员"
-                                    if item["user_role"] == "admin"
-                                    else "普通用户"
-                                ),
-                                "color": (
-                                    "gold" if item["user_role"] == "admin" else "blue"
-                                ),
-                            },
-                            "操作": {
-                                "content": "删除",
-                                "type": "link",
-                                "danger": True,
-                                "disabled": item["user_name"] == "admin",
-                            },
-                            "raw": item,
-                        }
-                        for item in all_users
-                    ]
-                },
+                {"data": refresh_user_manage_table_data()},
             )
 
 
@@ -309,9 +281,6 @@ def handle_user_delete(nClicksButton, clickedContent, recentlyButtonClickedRow):
         # 删除用户
         Users.delete_user(user_id=recentlyButtonClickedRow["user_id"])
 
-        # 查询全部用户信息
-        all_users = Users.get_all_users()
-
         set_props(
             "global-message",
             {
@@ -325,29 +294,5 @@ def handle_user_delete(nClicksButton, clickedContent, recentlyButtonClickedRow):
         # 刷新用户列表
         set_props(
             "user-manage-table",
-            {
-                "data": [
-                    {
-                        "user_id": item["user_id"],
-                        "user_name": item["user_name"],
-                        "user_role": {
-                            "tag": (
-                                "系统管理员"
-                                if item["user_role"] == "admin"
-                                else "普通用户"
-                            ),
-                            "color": (
-                                "gold" if item["user_role"] == "admin" else "blue"
-                            ),
-                        },
-                        "操作": {
-                            "content": "删除",
-                            "type": "link",
-                            "danger": True,
-                            "disabled": item["user_name"] == "admin",
-                        },
-                    }
-                    for item in all_users
-                ]
-            },
+            {"data": refresh_user_manage_table_data()},
         )

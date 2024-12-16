@@ -1,11 +1,12 @@
 import dash
 from flask import request
 from user_agents import parse
-from flask_login import LoginManager, UserMixin
+from flask_login import LoginManager, UserMixin, current_user
+from flask_principal import Principal, Permission, RoleNeed, identity_loaded
 
 # 应用基础参数
-from configs import BaseConfig
 from models.users import Users
+from configs import BaseConfig, AuthConfig
 
 app = dash.Dash(
     __name__,
@@ -22,6 +23,9 @@ app.server.secret_key = "magic-dash-pro-demo"
 # 为当前应用添加flask-login用户登录管理
 login_manager = LoginManager()
 login_manager.init_app(app.server)
+
+# 为当前应用添加flask-principal权限管理
+principals = Principal(app.server)
 
 
 class User(UserMixin):
@@ -50,6 +54,20 @@ def user_loader(user_id):
     )
 
     return user
+
+
+# 定义不同用户角色
+user_permissions = {role: Permission(RoleNeed(role)) for role in AuthConfig.roles}
+
+
+@identity_loaded.connect_via(app.server)
+def on_identity_loaded(sender, identity):
+    """flask-principal身份加载回调函数"""
+
+    identity.user = current_user
+
+    if hasattr(current_user, "user_role"):
+        identity.provides.add(RoleNeed(current_user.user_role))
 
 
 @app.server.before_request

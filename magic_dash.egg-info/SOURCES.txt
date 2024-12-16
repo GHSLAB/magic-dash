@@ -27,6 +27,7 @@ magic_dash/templates/magic-dash-pro/assets/imgs/login/插图1.svg
 magic_dash/templates/magic-dash-pro/assets/imgs/login/插图2.svg
 magic_dash/templates/magic-dash-pro/assets/imgs/login/插图3.svg
 magic_dash/templates/magic-dash-pro/assets/imgs/login/插图4.svg
+magic_dash/templates/magic-dash-pro/assets/imgs/status/403.svg
 magic_dash/templates/magic-dash-pro/assets/imgs/status/404.svg
 magic_dash/templates/magic-dash-pro/assets/imgs/status/500.svg
 magic_dash/templates/magic-dash-pro/assets/js/basic_callbacks.js
@@ -38,6 +39,7 @@ magic_dash/templates/magic-dash-pro/components/core_side_menu.py
 magic_dash/templates/magic-dash-pro/components/personal_info.py
 magic_dash/templates/magic-dash-pro/components/user_manage.py
 magic_dash/templates/magic-dash-pro/configs/__init__.py
+magic_dash/templates/magic-dash-pro/configs/auth_config.py
 magic_dash/templates/magic-dash-pro/configs/base_config.py
 magic_dash/templates/magic-dash-pro/configs/layout_config.py
 magic_dash/templates/magic-dash-pro/configs/router_config.py
@@ -50,6 +52,7 @@ magic_dash/templates/magic-dash-pro/views/__init__.py
 magic_dash/templates/magic-dash-pro/views/login.py
 magic_dash/templates/magic-dash-pro/views/core_pages/__init__.py
 magic_dash/templates/magic-dash-pro/views/core_pages/index.py
+magic_dash/templates/magic-dash-pro/views/status_pages/_403.py
 magic_dash/templates/magic-dash-pro/views/status_pages/_404.py
 magic_dash/templates/magic-dash-pro/views/status_pages/_500.py
 magic_dash/templates/magic-dash-pro/views/status_pages/__init__.py

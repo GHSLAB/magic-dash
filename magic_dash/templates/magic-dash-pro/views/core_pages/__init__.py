@@ -4,15 +4,62 @@ import feffery_antd_components as fac
 import feffery_utils_components as fuc
 from feffery_dash_utils.style_utils import style
 
-from configs import BaseConfig, RouterConfig, LayoutConfig
 from components import core_side_menu, personal_info, user_manage
+from configs import BaseConfig, RouterConfig, LayoutConfig, AuthConfig
 
 # 令绑定的回调函数子模块生效
 import callbacks.core_pages_c  # noqa: F401
 
 
-def render():
-    """渲染核心页面骨架"""
+def get_page_search_options(current_user_access_rule: str):
+    """当前模块内工具函数，生成页面搜索选项"""
+
+    options = [{"label": "首页", "value": "/"}]
+
+    for pathname, title in RouterConfig.valid_pathnames.items():
+        # 忽略已添加的首页
+        if pathname in [RouterConfig.index_pathname, "/"]:
+            pass
+
+        elif (
+            # 公开页面全部放行
+            pathname in RouterConfig.public_pathnames
+            or current_user_access_rule["type"] == "all"
+        ):
+            options.append(
+                {
+                    "label": title,
+                    "value": f"{pathname}|{title}",
+                }
+            )
+
+        elif current_user_access_rule["type"] == "include":
+            if pathname in current_user_access_rule["keys"]:
+                options.append(
+                    {
+                        "label": title,
+                        "value": f"{pathname}|{title}",
+                    }
+                )
+
+        elif current_user_access_rule["type"] == "exclude":
+            if pathname not in current_user_access_rule["keys"]:
+                options.append(
+                    {
+                        "label": title,
+                        "value": f"{pathname}|{title}",
+                    }
+                )
+
+    return options
+
+
+def render(current_user_access_rule: str):
+    """渲染核心页面骨架
+
+    Args:
+        current_user_access_rule (str): 当前用户页面可访问性规则
+    """
 
     return html.Div(
         [
@@ -33,7 +80,7 @@ def render():
                 [
                     user_manage.render(),
                 ]
-                if current_user.user_role == "admin"
+                if current_user.user_role == AuthConfig.admin_role
                 else []
             ),
             # 页首
@@ -110,16 +157,9 @@ def render():
                                         fac.AntdSelect(
                                             id="core-page-search",
                                             placeholder="输入关键词搜索页面",
-                                            options=[
-                                                {
-                                                    "label": title,
-                                                    "value": f"{pathname}|{title}",
-                                                }
-                                                for pathname, title in RouterConfig.valid_pathnames.items()
-                                                # 忽略重复的首页备选地址
-                                                if pathname
-                                                != RouterConfig.index_pathname
-                                            ],
+                                            options=get_page_search_options(
+                                                current_user_access_rule
+                                            ),
                                             variant="filled",
                                             style=style(width=250),
                                         ),
@@ -192,10 +232,9 @@ def render():
                                                 ),
                                                 fac.AntdText(
                                                     "角色：{}".format(
-                                                        "系统管理员"
-                                                        if current_user.user_role
-                                                        == "admin"
-                                                        else "常规用户"
+                                                        AuthConfig.roles.get(
+                                                            current_user.user_role
+                                                        )["description"]
                                                     ),
                                                     className="global-help-text",
                                                     style=style(fontSize=12),
@@ -226,7 +265,10 @@ def render():
                                                             "key": "用户管理",
                                                         }
                                                     ]
-                                                    if current_user.user_role == "admin"
+                                                    if (
+                                                        current_user.user_role
+                                                        == AuthConfig.admin_role
+                                                    )
                                                     else []
                                                 ),
                                                 {"isDivider": True},
@@ -267,7 +309,9 @@ def render():
                 [
                     # 侧边栏
                     fac.AntdCol(
-                        core_side_menu.render(),
+                        core_side_menu.render(
+                            current_user_access_rule=current_user_access_rule
+                        ),
                         flex="none",
                     ),
                     # 内容区域

@@ -4,11 +4,12 @@ import feffery_antd_components as fac
 import feffery_utils_components as fuc
 from flask_login import current_user, logout_user
 from dash.dependencies import Input, Output, State
+from flask_principal import identity_changed, AnonymousIdentity
 
 from server import app
 from views import core_pages, login
-from configs import RouterConfig  # 路由配置参数
-from views.status_pages import _404, _500  # 各状态页面
+from configs import RouterConfig, AuthConfig
+from views.status_pages import _403, _404, _500
 
 
 app.layout = lambda: fuc.FefferyTopProgress(
@@ -59,25 +60,35 @@ def root_router(pathname, trigger):
         return dash.no_update
 
     # 无需校验登录状态的公共页面
-    if pathname == "/404-demo":
-        return _404.render()
+    if pathname in RouterConfig.public_pathnames:
+        if pathname == "/403-demo":
+            return _403.render()
 
-    elif pathname == "/500-demo":
-        return _500.render()
+        elif pathname == "/404-demo":
+            return _404.render()
 
-    elif pathname == "/login":
-        return login.render()
+        elif pathname == "/500-demo":
+            return _500.render()
 
-    elif pathname == "/logout":
-        # 当前用户登出
-        logout_user()
+        elif pathname == "/login":
+            return login.render()
 
-        # 重定向至登录页面
-        set_props(
-            "global-redirect",
-            {"children": dcc.Location(pathname="/login", id="global-redirect")},
-        )
-        return dash.no_update
+        elif pathname == "/logout":
+            # 当前用户登出
+            logout_user()
+
+            # 重置当前用户身份
+            identity_changed.send(
+                app.server,
+                identity=AnonymousIdentity(),
+            )
+
+            # 重定向至登录页面
+            set_props(
+                "global-redirect",
+                {"children": dcc.Location(pathname="/login", id="global-redirect")},
+            )
+            return dash.no_update
 
     # 登录状态校验：若当前用户未登录
     if not current_user.is_authenticated:
@@ -91,8 +102,50 @@ def root_router(pathname, trigger):
 
     # 检查当前访问目标pathname是否为有效页面
     if pathname in RouterConfig.valid_pathnames.keys():
+        # 校验当前用户是否具有针对当前访问目标页面的权限
+        current_user_access_rule = AuthConfig.pathname_access_rules.get(
+            current_user.user_role
+        )
+
+        # 若当前用户页面权限规则类型为'include'
+        if current_user_access_rule["type"] == "include":
+            # 若当前用户不具有针对当前访问目标页面的权限
+            if pathname not in current_user_access_rule["keys"]:
+                # 首页不受权限控制影响
+                if pathname not in [
+                    "/",
+                    RouterConfig.index_pathname,
+                ]:
+                    # 重定向至403页面
+                    set_props(
+                        "global-redirect",
+                        {
+                            "children": dcc.Location(
+                                pathname="/403-demo", id="global-redirect"
+                            )
+                        },
+                    )
+
+                    return dash.no_update
+
+        # 若当前用户页面权限规则类型为'exclude'
+        elif current_user_access_rule["type"] == "exclude":
+            # 若当前用户不具有针对当前访问目标页面的权限
+            if pathname in current_user_access_rule["keys"]:
+                # 重定向至403页面
+                set_props(
+                    "global-redirect",
+                    {
+                        "children": dcc.Location(
+                            pathname="/403-demo", id="global-redirect"
+                        )
+                    },
+                )
+
+                return dash.no_update
+
         # 处理核心功能页面渲染
-        return core_pages.render()
+        return core_pages.render(current_user_access_rule=current_user_access_rule)
 
     # 返回404状态页面
     return _404.render()
