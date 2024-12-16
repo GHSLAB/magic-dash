@@ -135,6 +135,16 @@ def render():
                                             ),
                                             label="密码",
                                         ),
+                                    ],
+                                    id="login-form",
+                                    enableBatchControl=True,
+                                    layout="vertical",
+                                    style=style(width=350),
+                                ),
+                                # TODO
+                                # 随fac>=0.3.12更新，还原到原本的表单写法中
+                                fac.AntdSpace(
+                                    [
                                         fac.AntdCheckbox(
                                             id="login-remember-me", label="记住我"
                                         ),
@@ -148,9 +158,7 @@ def render():
                                             style=style(marginTop=18),
                                         ),
                                     ],
-                                    id="login-form",
-                                    enableBatchControl=True,
-                                    layout="vertical",
+                                    direction="vertical",
                                     style=style(width=350),
                                 ),
                             ],
