@@ -1,4 +1,6 @@
+import uuid
 import time
+import dash
 from dash import set_props, dcc
 from flask_login import login_user
 import feffery_antd_components as fac
@@ -96,15 +98,23 @@ def handle_login(nClicks, nSubmit, values, remember_me):
                 {"密码": "error"},
             ]
 
+        # 更新用户信息表session_token字段
+        new_session_token = str(uuid.uuid4())
+        Users.update_user(match_user.user_id, session_token=new_session_token)
+
         # 进行用户登录
         new_user = User(
             id=match_user.user_id,
             user_name=match_user.user_name,
             user_role=match_user.user_role,
+            session_token=new_session_token,
         )
 
         # 会话登录状态切换
         login_user(new_user, remember=remember_me)
+
+        # 在cookies更新ession_token字段
+        dash.ctx.response.set_cookie("session_token", new_session_token)
 
         # 更新用户身份信息
         identity_changed.send(app.server, identity=Identity(new_user.id))

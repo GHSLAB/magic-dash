@@ -23,6 +23,9 @@ class Users(BaseModel):
     # 用户角色，全部可选项见configs.AuthConfig.roles
     user_role = CharField(default=AuthConfig.normal_role)
 
+    # 用户最近一次登录会话token
+    session_token = CharField(null=True)
+
     # 用户其他辅助信息，任意JSON格式，允许空值
     other_info = JSONField(null=True)
 

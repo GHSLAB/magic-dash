@@ -1,4 +1,5 @@
 import dash
+from flask import request
 from dash import html, set_props, dcc
 import feffery_antd_components as fac
 import feffery_utils_components as fuc
@@ -7,9 +8,10 @@ from dash.dependencies import Input, Output, State
 from flask_principal import identity_changed, AnonymousIdentity
 
 from server import app
+from models.users import Users
 from views import core_pages, login
-from configs import RouterConfig, AuthConfig
 from views.status_pages import _403, _404, _500
+from configs import BaseConfig, RouterConfig, AuthConfig
 
 
 app.layout = lambda: fuc.FefferyTopProgress(
@@ -20,6 +22,18 @@ app.layout = lambda: fuc.FefferyTopProgress(
         fac.Fragment(id="global-redirect"),
         # 全局页面重载
         fac.Fragment(id="global-reload"),
+        *(
+            [
+                # 重复登录辅助检查轮询
+                dcc.Interval(
+                    id="duplicate-login-check-interval",
+                    interval=BaseConfig.duplicate_login_check_interval * 1000,
+                )
+            ]
+            # 若开启了重复登录辅助检查
+            if BaseConfig.enable_duplicate_login_check
+            else []
+        ),
         # 根节点url监听
         fuc.FefferyLocation(id="root-url"),
         # 应用根容器
@@ -149,6 +163,22 @@ def root_router(pathname, trigger):
 
     # 返回404状态页面
     return _404.render()
+
+
+@app.callback(Input("duplicate-login-check-interval", "n_intervals"))
+def duplicate_login_check(n_intervals):
+    """重复登录辅助轮询检查"""
+
+    # 若当前用户已登录
+    if current_user.is_authenticated:
+        match_user = Users.get_user(current_user.id)
+        # 若当前回调请求携带cookies中的session_token，当前用户数据库中的最新session_token不一致
+        if match_user.session_token != request.cookies.get("session_token"):
+            # 重定向到登出页
+            set_props(
+                "global-redirect",
+                {"children": dcc.Location(pathname="/logout", id="global-redirect")},
+            )
 
 
 if __name__ == "__main__":

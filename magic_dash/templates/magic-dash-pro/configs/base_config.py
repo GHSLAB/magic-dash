@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 
 class BaseConfig:
@@ -16,3 +16,9 @@ class BaseConfig:
         {"browser": "Firefox", "version": 78},
         {"browser": "Edge", "version": 100},
     ]
+
+    # 是否启用重复登录辅助检查
+    enable_duplicate_login_check: bool = True
+
+    # 重复登录辅助检查轮询间隔时间，单位：秒
+    duplicate_login_check_interval: Union[int, float] = 10

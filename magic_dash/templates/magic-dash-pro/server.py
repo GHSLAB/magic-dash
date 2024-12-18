@@ -31,12 +31,15 @@ principals = Principal(app.server)
 class User(UserMixin):
     """flask-login专用用户类"""
 
-    def __init__(self, id: str, user_name: str, user_role: str) -> None:
+    def __init__(
+        self, id: str, user_name: str, user_role: str, session_token: str = None
+    ) -> None:
         """初始化用户信息"""
 
         self.id = id
         self.user_name = user_name
         self.user_role = user_role
+        self.session_token = session_token
 
 
 @login_manager.user_loader
@@ -51,6 +54,7 @@ def user_loader(user_id):
         id=match_user.user_id,
         user_name=match_user.user_name,
         user_role=match_user.user_role,
+        session_token=match_user.session_token,
     )
 
     return user
