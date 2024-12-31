@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output, State, ClientsideFunction
 
 from server import app
 from views.status_pages import _404
-from views.core_pages import index
+from views.core_pages import index, page1
 
 # 路由配置参数
 from configs import RouterConfig
@@ -103,6 +103,11 @@ def core_router(pathname):
     if pathname == "/":
         # 更新页面返回内容
         page_content = index.render()
+
+    # 以主要页面1做简单示例
+    elif pathname == "/core/page1":
+        # 更新页面返回内容
+        page_content = page1.render()
 
     return [
         page_content,
