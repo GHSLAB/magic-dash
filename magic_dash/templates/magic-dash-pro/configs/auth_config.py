@@ -22,6 +22,9 @@ class AuthConfig:
     # keys：受type字段影响，定义可访问的指定若干页面/不可访问的指定若干页面，所对应RouterConfig.core_side_menu中菜单结构的key值
     pathname_access_rules: dict = {
         "admin": {"type": "all"},
-        "normal": {"type": "exclude", "keys": ["/core/page2", "/core/page5"]},
+        "normal": {
+            "type": "exclude",
+            "keys": ["/core/sub-menu-page3", "/core/other-page1"],
+        },
         # "normal": {"type": "include", "keys": ["/core/page2", "/core/page5"]},
     }

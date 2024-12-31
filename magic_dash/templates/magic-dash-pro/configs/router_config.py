@@ -28,51 +28,42 @@ class RouterConfig:
                 {
                     "component": "Item",
                     "props": {
-                        "title": "示例页面1",
+                        "title": "主要页面1",
                         "key": "/core/page1",
                         "icon": "antd-app-store",
                         "href": "/core/page1",
                     },
                 },
                 {
-                    "component": "Item",
-                    "props": {
-                        "title": "示例页面2",
-                        "key": "/core/page2",
-                        "icon": "antd-app-store",
-                        "href": "/core/page2",
-                    },
-                },
-                {
                     "component": "SubMenu",
                     "props": {
-                        "key": "示例页面3",
-                        "title": "示例页面3",
+                        "key": "子菜单演示",
+                        "title": "子菜单演示",
                         "icon": "antd-catalog",
                     },
                     "children": [
                         {
                             "component": "Item",
                             "props": {
-                                "key": "/core/page3-1",
-                                "title": "示例页面3-1",
-                                "href": "/core/page3-1",
+                                "key": "/core/sub-menu-page1",
+                                "title": "子菜单演示1",
+                                "href": "/core/sub-menu-page1",
                             },
                         },
                         {
                             "component": "Item",
                             "props": {
-                                "key": "/core/page3-2",
-                                "title": "示例页面3-2",
-                                "href": "/core/page3-2",
+                                "key": "/core/sub-menu-page2",
+                                "title": "子菜单演示2",
+                                "href": "/core/sub-menu-page2",
                             },
                         },
                         {
                             "component": "Item",
                             "props": {
-                                "key": "/core/page3-3",
-                                "title": "示例页面3-3",
-                                "href": "/core/page3-3",
+                                "key": "/core/sub-menu-page3",
+                                "title": "子菜单演示3",
+                                "href": "/core/sub-menu-page3",
                             },
                         },
                     ],
@@ -89,30 +80,12 @@ class RouterConfig:
                 {
                     "component": "Item",
                     "props": {
-                        "title": "示例页面4",
-                        "key": "/core/page4",
+                        "title": "其他页面1",
+                        "key": "/core/other-page1",
                         "icon": "antd-app-store",
-                        "href": "/core/page4",
+                        "href": "/core/other-page1",
                     },
-                },
-                {
-                    "component": "Item",
-                    "props": {
-                        "title": "示例页面5",
-                        "key": "/core/page5",
-                        "icon": "antd-app-store",
-                        "href": "/core/page5",
-                    },
-                },
-                {
-                    "component": "Item",
-                    "props": {
-                        "title": "示例页面6",
-                        "key": "/core/page6",
-                        "icon": "antd-app-store",
-                        "href": "/core/page6",
-                    },
-                },
+                }
             ],
         },
     ]
@@ -122,14 +95,11 @@ class RouterConfig:
         "/login": "登录页",
         "/": "首页",
         index_pathname: "首页",
-        "/core/page1": "示例页面1",
-        "/core/page2": "示例页面2",
-        "/core/page3-1": "示例页面3-1",
-        "/core/page3-2": "示例页面3-2",
-        "/core/page3-3": "示例页面3-3",
-        "/core/page4": "示例页面4",
-        "/core/page5": "示例页面5",
-        "/core/page6": "示例页面6",
+        "/core/page1": "主要页面1",
+        "/core/sub-menu-page1": "子菜单演示1",
+        "/core/sub-menu-page2": "子菜单演示2",
+        "/core/sub-menu-page3": "子菜单演示3",
+        "/core/other-page1": "其他页面1",
         "/403-demo": "403状态页演示",
         "/404-demo": "404状态页演示",
         "/500-demo": "500状态页演示",
@@ -146,7 +116,7 @@ class RouterConfig:
 
     # 部分页面pathname对应要展开的子菜单层级
     side_menu_open_keys: dict = {
-        "/core/page3-1": ["示例页面3"],
-        "/core/page3-2": ["示例页面3"],
-        "/core/page3-3": ["示例页面3"],
+        "/core/sub-menu-page1": ["子菜单演示"],
+        "/core/sub-menu-page2": ["子菜单演示"],
+        "/core/sub-menu-page3": ["子菜单演示"],
     }
