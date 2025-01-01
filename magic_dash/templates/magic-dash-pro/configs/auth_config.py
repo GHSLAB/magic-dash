@@ -24,7 +24,12 @@ class AuthConfig:
         "admin": {"type": "all"},
         "normal": {
             "type": "exclude",
-            "keys": ["/core/sub-menu-page3", "/core/other-page1"],
+            "keys": [
+                "/core/sub-menu-page3",
+                "/core/independent-page",
+                "/core/independent-page/demo",
+                "/core/other-page1",
+            ],
         },
         # "normal": {"type": "include", "keys": ["/core/page2", "/core/page5"]},
     }

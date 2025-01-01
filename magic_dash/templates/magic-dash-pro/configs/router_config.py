@@ -68,6 +68,15 @@ class RouterConfig:
                         },
                     ],
                 },
+                {
+                    "component": "Item",
+                    "props": {
+                        "title": "独立页面渲染入口页",
+                        "key": "/core/independent-page",
+                        "icon": "antd-app-store",
+                        "href": "/core/independent-page",
+                    },
+                },
             ],
         },
         {
@@ -99,11 +108,17 @@ class RouterConfig:
         "/core/sub-menu-page1": "子菜单演示1",
         "/core/sub-menu-page2": "子菜单演示2",
         "/core/sub-menu-page3": "子菜单演示3",
+        "/core/independent-page": "独立页面渲染入口页",
         "/core/other-page1": "其他页面1",
         "/403-demo": "403状态页演示",
         "/404-demo": "404状态页演示",
         "/500-demo": "500状态页演示",
+        # 独立渲染页面
+        "/core/independent-page/demo": "独立页面演示示例",
     }
+
+    # 独立渲染展示的核心页面
+    independent_core_pathnames: List[str] = ["/core/independent-page/demo"]
 
     # 无需权限校验的公开页面
     public_pathnames: List[str] = [

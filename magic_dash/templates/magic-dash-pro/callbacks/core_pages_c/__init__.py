@@ -12,6 +12,7 @@ from views.core_pages import (
     sub_menu_page1,
     sub_menu_page2,
     sub_menu_page3,
+    independent_page,
 )
 
 # 路由配置参数
@@ -129,6 +130,11 @@ def core_router(pathname):
     elif pathname == "/core/sub-menu-page3":
         # 更新页面返回内容
         page_content = sub_menu_page3.render()
+
+    # 以独立页面做简单示例
+    elif pathname == "/core/independent-page":
+        # 更新页面返回内容
+        page_content = independent_page.render()
 
     return [
         page_content,

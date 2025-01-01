@@ -4,6 +4,7 @@ import feffery_antd_components as fac
 import feffery_utils_components as fuc
 from feffery_dash_utils.style_utils import style
 
+from views.core_pages import independent_page_demo
 from components import core_side_menu, personal_info, user_manage
 from configs import BaseConfig, RouterConfig, LayoutConfig, AuthConfig
 
@@ -54,12 +55,19 @@ def get_page_search_options(current_user_access_rule: str):
     return options
 
 
-def render(current_user_access_rule: str):
+def render(current_user_access_rule: str, current_pathname: str = None):
     """渲染核心页面骨架
 
     Args:
         current_user_access_rule (str): 当前用户页面可访问性规则
+        current_pathname (str, optional): 当前页面pathname. Defaults to None.
     """
+
+    # 判断是否需要独立渲染
+    if current_pathname in RouterConfig.independent_core_pathnames:
+        # 返回不同地址规则对应页面内容
+        if current_pathname == "/core/independent-page/demo":
+            return independent_page_demo.render()
 
     return html.Div(
         [

@@ -159,7 +159,9 @@ def root_router(pathname, trigger):
                 return dash.no_update
 
         # 处理核心功能页面渲染
-        return core_pages.render(current_user_access_rule=current_user_access_rule)
+        return core_pages.render(
+            current_user_access_rule=current_user_access_rule, current_pathname=pathname
+        )
 
     # 返回404状态页面
     return _404.render()

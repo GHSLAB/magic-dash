@@ -60,7 +60,7 @@ def render_personal_info_modal(visible):
                             allowClear=True,
                         ),
                         label="密码",
-                        tooltip="一旦填写则视作新的密码",
+                        tooltip="一旦填写并确定更新，则视作新的密码",
                     ),
                 ],
                 id="personal-info-form",
