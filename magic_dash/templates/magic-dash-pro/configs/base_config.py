@@ -8,7 +8,7 @@ class BaseConfig:
     app_title: str = "Magic Dash Pro"
 
     # 应用版本
-    app_version: str = "0.2.5"
+    app_version: str = "0.2.6"
 
     # 浏览器最低版本限制规则
     min_browser_versions: List[dict] = [

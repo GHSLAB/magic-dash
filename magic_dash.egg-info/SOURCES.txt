@@ -34,6 +34,7 @@ magic_dash/templates/magic-dash-pro/assets/js/basic_callbacks.js
 magic_dash/templates/magic-dash-pro/callbacks/__init__.py
 magic_dash/templates/magic-dash-pro/callbacks/login_c.py
 magic_dash/templates/magic-dash-pro/callbacks/core_pages_c/__init__.py
+magic_dash/templates/magic-dash-pro/callbacks/core_pages_c/page1_c.py
 magic_dash/templates/magic-dash-pro/components/__init__.py
 magic_dash/templates/magic-dash-pro/components/core_side_menu.py
 magic_dash/templates/magic-dash-pro/components/personal_info.py
@@ -51,7 +52,13 @@ magic_dash/templates/magic-dash-pro/utils/clear_pycache.py
 magic_dash/templates/magic-dash-pro/views/__init__.py
 magic_dash/templates/magic-dash-pro/views/login.py
 magic_dash/templates/magic-dash-pro/views/core_pages/__init__.py
+magic_dash/templates/magic-dash-pro/views/core_pages/independent_page.py
+magic_dash/templates/magic-dash-pro/views/core_pages/independent_page_demo.py
 magic_dash/templates/magic-dash-pro/views/core_pages/index.py
+magic_dash/templates/magic-dash-pro/views/core_pages/page1.py
+magic_dash/templates/magic-dash-pro/views/core_pages/sub_menu_page1.py
+magic_dash/templates/magic-dash-pro/views/core_pages/sub_menu_page2.py
+magic_dash/templates/magic-dash-pro/views/core_pages/sub_menu_page3.py
 magic_dash/templates/magic-dash-pro/views/status_pages/_403.py
 magic_dash/templates/magic-dash-pro/views/status_pages/_404.py
 magic_dash/templates/magic-dash-pro/views/status_pages/_500.py
@@ -66,6 +73,7 @@ magic_dash/templates/magic-dash/assets/imgs/status/500.svg
 magic_dash/templates/magic-dash/assets/js/basic_callbacks.js
 magic_dash/templates/magic-dash/callbacks/__init__.py
 magic_dash/templates/magic-dash/callbacks/core_pages_c/__init__.py
+magic_dash/templates/magic-dash/callbacks/core_pages_c/page1_c.py
 magic_dash/templates/magic-dash/components/__init__.py
 magic_dash/templates/magic-dash/components/core_side_menu.py
 magic_dash/templates/magic-dash/configs/__init__.py
@@ -75,7 +83,13 @@ magic_dash/templates/magic-dash/configs/router_config.py
 magic_dash/templates/magic-dash/utils/clear_pycache.py
 magic_dash/templates/magic-dash/views/__init__.py
 magic_dash/templates/magic-dash/views/core_pages/__init__.py
+magic_dash/templates/magic-dash/views/core_pages/independent_page.py
+magic_dash/templates/magic-dash/views/core_pages/independent_page_demo.py
 magic_dash/templates/magic-dash/views/core_pages/index.py
+magic_dash/templates/magic-dash/views/core_pages/page1.py
+magic_dash/templates/magic-dash/views/core_pages/sub_menu_page1.py
+magic_dash/templates/magic-dash/views/core_pages/sub_menu_page2.py
+magic_dash/templates/magic-dash/views/core_pages/sub_menu_page3.py
 magic_dash/templates/magic-dash/views/status_pages/_404.py
 magic_dash/templates/magic-dash/views/status_pages/_500.py
 magic_dash/templates/magic-dash/views/status_pages/__init__.py

@@ -29,13 +29,13 @@ Requires-Dist: click
 
 ## 目录
 
-[安装](#install)<br>
-[使用](#usage)<br>
-[内置模板列表](#template-list)<br>
+[1 安装](#install)<br>
+[2 使用](#usage)<br>
+[3 内置模板列表](#template-list)<br>
 
 <a name="install" ></a>
 
-## 安装
+## 1 安装
 
 ```bash
 pip install magic-dash -U
@@ -43,15 +43,15 @@ pip install magic-dash -U
 
 <a name="usage" ></a>
 
-## 使用
+## 2 使用
 
-### 查看内置项目模板
+### 2.1 查看内置项目模板
 
 ```bash
 magic-dash list
 ```
 
-### 生成指定项目模板
+### 2.2 生成指定项目模板
 
 - 默认生成到当前路径
 
@@ -65,13 +65,13 @@ magic-dash create --name magic-dash
 magic-dash create --name magic-dash --path 目标路径
 ```
 
-### 查看当前`magic-dash`版本
+### 2.3 查看当前`magic-dash`版本
 
 ```bash
 magic-dash --version
 ```
 
-### 查看命令说明
+### 2.4 查看命令说明
 
 ```bash
 magic-dash --help
@@ -83,7 +83,7 @@ magic-dash create --help
 
 <a name="template-list" ></a>
 
-## 内置模板列表
+## 3 内置模板列表
 
 ```bash
 内置Dash应用项目模板：
