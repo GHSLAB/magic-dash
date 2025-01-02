@@ -29,7 +29,15 @@ def render():
                 ]
             ),
             fac.AntdAlert(
-                type="info", showIcon=True, message="这里是子菜单演示1演示示例"
+                type="info",
+                showIcon=True,
+                message="这里是子菜单演示1演示示例",
+                description=fac.AntdText(
+                    [
+                        "本页面模块路径：",
+                        fac.AntdText("views/core_pages/sub_menu_page1.py", strong=True),
+                    ]
+                ),
             ),
         ],
         direction="vertical",

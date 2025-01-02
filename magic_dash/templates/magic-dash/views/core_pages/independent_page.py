@@ -22,6 +22,11 @@ def render():
                             "此处", href="/core/independent-page/demo", target="_blank"
                         ),
                         "打开示例独立显示页面。",
+                        html.Br(),
+                        "本页面模块路径：",
+                        fac.AntdText(
+                            "views/core_pages/independent_page.py", strong=True
+                        ),
                     ]
                 ),
             ),

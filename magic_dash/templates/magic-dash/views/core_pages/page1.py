@@ -20,10 +20,10 @@ def render():
                     [
                         "本页面简单演示了如何在当前项目模板中添加新的自定义页面，且页面内容中包含由回调函数控制的简单演示用交互功能。",
                         html.Br(),
-                        "页面模块路径：",
+                        "本页面模块路径：",
                         fac.AntdText("views/core_pages/page1.py", strong=True),
                         html.Br(),
-                        "页面回调模块路径：",
+                        "本页面回调模块路径：",
                         fac.AntdText("callbacks/core_pages_c/page1_c.py", strong=True),
                     ]
                 ),
