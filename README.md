@@ -18,6 +18,7 @@
 [1 安装](#install)<br>
 [2 使用](#usage)<br>
 [3 内置模板列表](#template-list)<br>
+[4 内置模板文档](#template-doc)<br>
 
 <a name="install" ></a>
 
@@ -78,3 +79,13 @@ magic-dash create --help
 - magic-dash-pro    多页面+用户登录应用模板
 - simple-tool    单页面工具应用模板
 ```
+
+<a name="template-doc" ></a>
+
+## 4 各内置模板说明文档
+
+|    模板名称    |             说明文档             |
+| :------------: | :------------------------------: |
+|   magic-dash   |   [查看](./docs/magic-dash.md)   |
+| magic-dash-pro | [查看](./docs/magic-dash-pro.md) |
+|  simple-tool   |  [查看](./docs/simple-tool.md)   |
