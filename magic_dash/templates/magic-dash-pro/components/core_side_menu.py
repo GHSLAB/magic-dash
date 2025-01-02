@@ -34,13 +34,19 @@ def render(current_user_access_rule: str):
                     )
 
     elif current_user_access_rule["type"] == "exclude":
-        for key in current_user_access_rule["keys"]:
-            current_menu_items = TreeManager.delete_node(
-                current_menu_items,
-                key,
-                data_type="menu",  # 菜单数据模式
-                keep_empty_children_node=False,  # 去除children字段为空列表的节点
-            )
+        for key in RouterConfig.valid_pathnames.keys():
+            if key in current_user_access_rule["keys"]:
+                # 首页不受权限控制影响
+                if key not in [
+                    "/",
+                    RouterConfig.index_pathname,
+                ]:
+                    current_menu_items = TreeManager.delete_node(
+                        current_menu_items,
+                        key,
+                        data_type="menu",  # 菜单数据模式
+                        keep_empty_children_node=False,  # 去除children字段为空列表的节点
+                    )
 
     return fac.AntdAffix(
         fuc.FefferyDiv(
