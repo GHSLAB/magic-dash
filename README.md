@@ -15,13 +15,13 @@
 
 ## 目录
 
-[安装](#install)<br>
-[使用](#usage)<br>
-[内置模板列表](#template-list)<br>
+[1 安装](#install)<br>
+[2 使用](#usage)<br>
+[3 内置模板列表](#template-list)<br>
 
 <a name="install" ></a>
 
-## 安装
+## 1 安装
 
 ```bash
 pip install magic-dash -U
@@ -29,7 +29,7 @@ pip install magic-dash -U
 
 <a name="usage" ></a>
 
-## 使用
+## 2 使用
 
 ### 查看内置项目模板
 
@@ -69,7 +69,7 @@ magic-dash create --help
 
 <a name="template-list" ></a>
 
-## 内置模板列表
+## 3 内置模板列表
 
 ```bash
 内置Dash应用项目模板：
