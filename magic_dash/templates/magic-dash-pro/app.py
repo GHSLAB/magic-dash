@@ -3,9 +3,9 @@ from flask import request
 from dash import html, set_props, dcc
 import feffery_antd_components as fac
 import feffery_utils_components as fuc
-from flask_login import current_user, logout_user
 from dash.dependencies import Input, Output, State
 from flask_principal import identity_changed, AnonymousIdentity
+from flask_login import current_user, logout_user, AnonymousUserMixin
 
 from server import app
 from models.users import Users
@@ -171,8 +171,16 @@ def root_router(pathname, trigger):
 def duplicate_login_check(n_intervals):
     """重复登录辅助轮询检查"""
 
+    # 若当前用户身份未知
+    if isinstance(current_user, AnonymousUserMixin):
+        # 重定向到登出页
+        set_props(
+            "global-redirect",
+            {"children": dcc.Location(pathname="/logout", id="global-redirect")},
+        )
+
     # 若当前用户已登录
-    if current_user.is_authenticated:
+    elif current_user.is_authenticated:
         match_user = Users.get_user(current_user.id)
         # 若当前回调请求携带cookies中的session_token，当前用户数据库中的最新session_token不一致
         if match_user.session_token != request.cookies.get("session_token"):
