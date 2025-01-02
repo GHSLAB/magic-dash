@@ -31,13 +31,13 @@ pip install magic-dash -U
 
 ## 2 使用
 
-### 查看内置项目模板
+### 2.1 查看内置项目模板
 
 ```bash
 magic-dash list
 ```
 
-### 生成指定项目模板
+### 2.2 生成指定项目模板
 
 - 默认生成到当前路径
 
@@ -51,13 +51,13 @@ magic-dash create --name magic-dash
 magic-dash create --name magic-dash --path 目标路径
 ```
 
-### 查看当前`magic-dash`版本
+### 2.3 查看当前`magic-dash`版本
 
 ```bash
 magic-dash --version
 ```
 
-### 查看命令说明
+### 2.4 查看命令说明
 
 ```bash
 magic-dash --help
