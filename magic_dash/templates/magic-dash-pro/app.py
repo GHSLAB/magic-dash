@@ -167,9 +167,16 @@ def root_router(pathname, trigger):
     return _404.render()
 
 
-@app.callback(Input("duplicate-login-check-interval", "n_intervals"))
-def duplicate_login_check(n_intervals):
+@app.callback(
+    Input("duplicate-login-check-interval", "n_intervals"),
+    State("root-url", "pathname"),
+)
+def duplicate_login_check(n_intervals, pathname):
     """重复登录辅助轮询检查"""
+
+    # 若当前页面属于无需校验登录状态的公共页面，结束检查
+    if pathname in RouterConfig.public_pathnames:
+        return
 
     # 若当前用户身份未知
     if isinstance(current_user, AnonymousUserMixin):
