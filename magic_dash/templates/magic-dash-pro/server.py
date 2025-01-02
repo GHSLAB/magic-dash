@@ -1,8 +1,8 @@
 import dash
 from flask import request
 from user_agents import parse
-from flask_login import LoginManager, UserMixin, current_user
 from flask_principal import Principal, Permission, RoleNeed, identity_loaded
+from flask_login import LoginManager, UserMixin, current_user, AnonymousUserMixin
 
 # 应用基础参数
 from models.users import Users
@@ -48,6 +48,10 @@ def user_loader(user_id):
 
     # 根据当前要加载的用户id，从数据库中获取匹配用户信息
     match_user = Users.get_user(user_id)
+
+    # 处理未匹配到有效用户的情况
+    if not match_user:
+        return AnonymousUserMixin()
 
     # 当前用户实例化
     user = User(
