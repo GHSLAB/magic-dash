@@ -61,7 +61,7 @@ def root_router(pathname, trigger):
     # 检查当前访问目标pathname是否为有效页面
     if pathname in RouterConfig.valid_pathnames.keys():
         # 处理核心功能页面渲染
-        return core_pages.render()
+        return core_pages.render(current_pathname=pathname)
 
     # 返回404状态页面
     return _404.render()

@@ -4,14 +4,25 @@ import feffery_utils_components as fuc
 from feffery_dash_utils.style_utils import style
 
 from components import core_side_menu
+from views.core_pages import independent_page_demo
 from configs import BaseConfig, RouterConfig, LayoutConfig
 
 # 令绑定的回调函数子模块生效
 import callbacks.core_pages_c  # noqa: F401
 
 
-def render():
-    """渲染核心页面骨架"""
+def render(current_pathname: str = None):
+    """渲染核心页面骨架
+
+    Args:
+        current_pathname (str, optional): 当前页面pathname. Defaults to None.
+    """
+
+    # 判断是否需要独立渲染
+    if current_pathname in RouterConfig.independent_core_pathnames:
+        # 返回不同地址规则对应页面内容
+        if current_pathname == "/core/independent-page/demo":
+            return independent_page_demo.render()
 
     return html.Div(
         [

@@ -5,7 +5,14 @@ from dash.dependencies import Input, Output, State, ClientsideFunction
 
 from server import app
 from views.status_pages import _404
-from views.core_pages import index
+from views.core_pages import (
+    index,
+    page1,
+    sub_menu_page1,
+    sub_menu_page2,
+    sub_menu_page3,
+    independent_page,
+)
 
 # 路由配置参数
 from configs import RouterConfig
@@ -88,6 +95,31 @@ def core_router(pathname):
     if pathname == "/":
         # 更新页面返回内容
         page_content = index.render()
+
+    # 以主要页面1做简单示例
+    elif pathname == "/core/page1":
+        # 更新页面返回内容
+        page_content = page1.render()
+
+    # 以子菜单演示1做简单示例
+    elif pathname == "/core/sub-menu-page1":
+        # 更新页面返回内容
+        page_content = sub_menu_page1.render()
+
+    # 以子菜单演示2做简单示例
+    elif pathname == "/core/sub-menu-page2":
+        # 更新页面返回内容
+        page_content = sub_menu_page2.render()
+
+    # 以子菜单演示3做简单示例
+    elif pathname == "/core/sub-menu-page3":
+        # 更新页面返回内容
+        page_content = sub_menu_page3.render()
+
+    # 以独立页面做简单示例
+    elif pathname == "/core/independent-page":
+        # 更新页面返回内容
+        page_content = independent_page.render()
 
     return [
         page_content,
