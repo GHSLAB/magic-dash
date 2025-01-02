@@ -84,8 +84,8 @@ magic-dash create --help
 
 ## 4 各内置模板说明文档
 
-|    模板名称    |             说明文档             |
-| :------------: | :------------------------------: |
-|   magic-dash   |   [查看](./docs/magic-dash.md)   |
-| magic-dash-pro | [查看](./docs/magic-dash-pro.md) |
-|  simple-tool   |  [查看](./docs/simple-tool.md)   |
+|    模板名称    |        模板描述         |             说明文档             |
+| :------------: | :---------------------: | :------------------------------: |
+|   magic-dash   |   基础多页面应用模板    |   [查看](./docs/magic-dash.md)   |
+| magic-dash-pro | 多页面+用户登录应用模板 | [查看](./docs/magic-dash-pro.md) |
+|  simple-tool   |   单页面工具应用模板    |  [查看](./docs/simple-tool.md)   |
