@@ -44,3 +44,23 @@ magic-dash
  ┣ app.py # 应用主文件
  ┗ requirements.txt # 项目依赖信息
 ```
+
+## 4 主要功能配置说明
+
+### 4.1 浏览器版本检测&限制
+
+> `BaseConfig.min_browser_versions`
+
+针对用户浏览器最低版本检测功能，配置所依赖的相关浏览器类型及最低版本信息，默认值：
+
+```python
+[
+    {"browser": "Chrome", "version": 88},
+    {"browser": "Firefox", "version": 78},
+    {"browser": "Edge", "version": 100},
+]
+```
+
+> `BaseConfig.strict_browser_type_check`
+
+针对用户浏览器最低版本检测功能，配置是否开启严格的浏览器类型限制，默认值：`False`，设置为`True`后，将依据`min_browser_versions`参数，直接拦截不在所列举范围内的浏览器类型。
