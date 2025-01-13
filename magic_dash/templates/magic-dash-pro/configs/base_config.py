@@ -8,7 +8,7 @@ class BaseConfig:
     app_title: str = "Magic Dash Pro"
 
     # 应用版本
-    app_version: str = "0.2.7"
+    app_version: str = "0.2.8"
 
     # 应用密钥
     app_secret_key: str = "magic-dash-pro-demo"

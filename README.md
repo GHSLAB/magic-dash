@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="./magic_dash/templates/magic-dash/assets/imgs/logo.svg" height=100></img>
+	<img src="./imgs/logo.svg" height=100></img>
 </p>
 <h1 align="center">magic-dash</h1>
 <div align="center">
@@ -19,6 +19,7 @@
 [2 使用](#usage)<br>
 [3 内置模板列表](#template-list)<br>
 [4 内置模板文档](#template-doc)<br>
+[5 更多应用开发教程](#courses)<br>
 
 <a name="install" ></a>
 
@@ -89,3 +90,19 @@ magic-dash create --help
 |   magic-dash   |   基础多页面应用模板    |   [查看](./docs/magic-dash.md)   |
 | magic-dash-pro | 多页面+用户登录应用模板 | [查看](./docs/magic-dash-pro.md) |
 |  simple-tool   |   单页面工具应用模板    |  [查看](./docs/simple-tool.md)   |
+
+<a name="courses" ></a>
+
+## 5 更多应用开发教程
+
+> 微信公众号「玩转 Dash」，欢迎扫码关注 👇
+
+<p align="center" >
+  <img src="./imgs/公众号.png" height=220 />
+</p>
+
+> 「玩转 Dash」知识星球，海量教程案例模板资源，专业的答疑咨询服务，欢迎扫码加入 👇
+
+<p align="center" >
+  <img src="./imgs/知识星球.jpg" height=220 />
+</p>

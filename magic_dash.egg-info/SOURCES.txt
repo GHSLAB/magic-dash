@@ -31,6 +31,7 @@ magic_dash/templates/magic-dash-pro/assets/imgs/status/403.svg
 magic_dash/templates/magic-dash-pro/assets/imgs/status/404.svg
 magic_dash/templates/magic-dash-pro/assets/imgs/status/500.svg
 magic_dash/templates/magic-dash-pro/assets/js/basic_callbacks.js
+magic_dash/templates/magic-dash-pro/assets/videos/login-bg.mp4
 magic_dash/templates/magic-dash-pro/callbacks/__init__.py
 magic_dash/templates/magic-dash-pro/callbacks/login_c.py
 magic_dash/templates/magic-dash-pro/callbacks/core_pages_c/__init__.py
