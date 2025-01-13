@@ -62,7 +62,9 @@ magic-dash-pro
 
 ## 4 主要功能配置说明
 
-### 4.1 浏览器版本检测&限制
+### 4.1 基础配置
+
+#### 4.1.1 浏览器版本检测&限制
 
 > `BaseConfig.min_browser_versions`
 
@@ -79,3 +81,91 @@ magic-dash-pro
 > `BaseConfig.strict_browser_type_check`
 
 针对用户浏览器最低版本检测功能，配置是否开启严格的浏览器类型限制，默认值：`False`，设置为`True`后，将依据`min_browser_versions`参数，直接拦截不在所列举范围内的浏览器类型。
+
+#### 4.1.2 应用基础标题
+
+> `BaseConfig.app_title`
+
+设置应用基础标题，默认值：`Magic Dash`。
+
+#### 4.1.3 应用版本号
+
+> `BaseConfig.app_version`
+
+设置应用版本号。
+
+#### 4.1.4 应用密钥
+
+> `BaseConfig.app_secret_key`
+
+设置应用密钥，用于配合实现用户登录相关底层逻辑。
+
+#### 4.1.5 重复登录检测
+
+> `BaseConfig.enable_duplicate_login_check`
+
+设置是否开启重复登录检测功能，默认值：`True`。
+
+> `BaseConfig.duplicate_login_check_interval`
+
+设置重复登录检测间隔时间，单位：秒，默认值：`10`。
+
+### 4.2 布局配置
+
+#### 4.2.1 核心页面侧边栏宽度
+
+> `LayoutConfig.core_side_width`
+
+设置核心页面侧边栏像素宽度，默认值：`350`。
+
+#### 4.2.2 登录页面左侧内容
+
+> `LayoutConfig.login_left_side_content_type`
+
+设置登录页面左侧内容类型，默认值：`image`，可选项有`image`（图片内容）、`video`（视频内容）。
+
+### 4.3 路由配置
+
+#### 4.3.1 首页路径别名
+
+> `RouterConfig.index_pathname`
+
+设置首页路径别名，默认值：`/index`。
+
+#### 4.3.2 核心页面侧边菜单结构
+
+> `RouterConfig.core_side_menu`
+
+核心页面侧边菜单结构。
+
+#### 4.3.3 有效页面路径&标题映射
+
+> `RouterConfig.valid_pages`
+
+配置有效页面路径&标题映射参数。
+
+#### 4.3.4 独立渲染页面路径
+
+> `RouterConfig.independent_core_pathnames`
+
+设置核心页面中需要进行独立渲染的路径列表。
+
+#### 4.3.5 公开页面路径列表
+
+设置无需登录状态校验的公开页面路径列表，默认值：
+
+```python
+[
+    "/login",
+    "/logout",
+    "/403-demo",
+    "/404-demo",
+    "/500-demo",
+]
+```
+
+#### 4.3.6 侧边子菜单随访问自动展开
+
+> `RouterConfig.side_menu_open_keys`
+
+针对侧边菜单结构中隶属于子菜单的菜单项，配置对应需展开的上层菜单逐级`key`值列表。
