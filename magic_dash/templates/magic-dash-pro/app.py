@@ -1,3 +1,4 @@
+import re
 import dash
 from flask import request
 from dash import html, set_props, dcc
@@ -115,7 +116,17 @@ def root_router(pathname, trigger):
         return dash.no_update
 
     # 检查当前访问目标pathname是否为有效页面
-    if pathname in RouterConfig.valid_pathnames.keys():
+    if (
+        # 硬编码页面地址
+        pathname in RouterConfig.valid_pathnames.keys()
+        or
+        # 通配模式页面地址
+        any(
+            pattern.match(pathname)
+            for pattern in RouterConfig.valid_pathnames.keys()
+            if isinstance(pattern, re.Pattern)
+        )
+    ):
         # 校验当前用户是否具有针对当前访问目标页面的权限
         current_user_access_rule = AuthConfig.pathname_access_rules.get(
             current_user.user_role

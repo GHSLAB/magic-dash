@@ -1,12 +1,13 @@
+import re
 from dash import html, dcc
 from flask_login import current_user
 import feffery_antd_components as fac
 import feffery_utils_components as fuc
 from feffery_dash_utils.style_utils import style
 
-from views.core_pages import independent_page_demo
 from components import core_side_menu, personal_info, user_manage
 from configs import BaseConfig, RouterConfig, LayoutConfig, AuthConfig
+from views.core_pages import independent_page_demo, independent_wildcard_page_demo
 
 # 令绑定的回调函数子模块生效
 import callbacks.core_pages_c  # noqa: F401
@@ -20,6 +21,10 @@ def get_page_search_options(current_user_access_rule: str):
     for pathname, title in RouterConfig.valid_pathnames.items():
         # 忽略已添加的首页
         if pathname in [RouterConfig.index_pathname, "/"]:
+            pass
+
+        # 忽略正则表达式通配页面
+        elif isinstance(pathname, re.Pattern):
             pass
 
         elif (
@@ -68,6 +73,24 @@ def render(current_user_access_rule: str, current_pathname: str = None):
         # 返回不同地址规则对应页面内容
         if current_pathname == "/core/independent-page/demo":
             return independent_page_demo.render()
+
+    # 判断是否需要独立通配渲染
+    elif any(
+        pattern.match(current_pathname)
+        for pattern in RouterConfig.independent_core_pathnames
+        if isinstance(pattern, re.Pattern)
+    ):
+        # 获取命中当前地址的第一个通配规则
+        match_pattern = None
+        for pattern in RouterConfig.independent_core_pathnames:
+            if isinstance(pattern, re.Pattern):
+                if pattern.match(current_pathname):
+                    # 更新命中的通配规则
+                    match_pattern = pattern
+                    break
+        # 返回不同地址通配规则对应页面内容
+        if match_pattern == RouterConfig.wildcard_patterns["独立通配页面演示"]:
+            return independent_wildcard_page_demo.render(pathname=current_pathname)
 
     return html.Div(
         [

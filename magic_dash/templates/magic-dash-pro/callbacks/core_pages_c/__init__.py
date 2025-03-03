@@ -13,6 +13,7 @@ from views.core_pages import (
     sub_menu_page2,
     sub_menu_page3,
     independent_page,
+    independent_wildcard_page,
 )
 
 # 路由配置参数
@@ -135,6 +136,11 @@ def core_router(pathname):
     elif pathname == "/core/independent-page":
         # 更新页面返回内容
         page_content = independent_page.render()
+
+    # 以独立通配页面做简单示例
+    elif pathname == "/core/independent-wildcard-page":
+        # 更新页面返回内容
+        page_content = independent_wildcard_page.render()
 
     return [
         page_content,
