@@ -1,4 +1,5 @@
-from typing import List
+import re
+from typing import List, Union
 
 
 class RouterConfig:
@@ -77,6 +78,15 @@ class RouterConfig:
                         "href": "/core/independent-page",
                     },
                 },
+                {
+                    "component": "Item",
+                    "props": {
+                        "title": "独立通配页面渲染入口页",
+                        "key": "/core/independent-wildcard-page",
+                        "icon": "antd-app-store",
+                        "href": "/core/independent-wildcard-page",
+                    },
+                },
             ],
         },
         {
@@ -99,6 +109,11 @@ class RouterConfig:
         },
     ]
 
+    # 通配页面模式字典
+    wildcard_patterns: dict = {
+        "独立通配页面演示": re.compile(r"^/core/independent-wildcard-page/demo/(.*?)$")
+    }
+
     # 有效页面pathname地址 -> 页面标题映射字典
     valid_pathnames: dict = {
         "/": "首页",
@@ -108,15 +123,21 @@ class RouterConfig:
         "/core/sub-menu-page2": "子菜单演示2",
         "/core/sub-menu-page3": "子菜单演示3",
         "/core/independent-page": "独立页面渲染入口页",
+        "/core/independent-wildcard-page": "独立通配页面渲染入口页",
         "/core/other-page1": "其他页面1",
         "/404-demo": "404状态页演示",
         "/500-demo": "500状态页演示",
         # 独立渲染页面
         "/core/independent-page/demo": "独立页面演示示例",
+        # 独立通配渲染页面
+        wildcard_patterns["独立通配页面演示"]: "独立通配页面演示示例",
     }
 
     # 独立渲染展示的核心页面
-    independent_core_pathnames: List[str] = ["/core/independent-page/demo"]
+    independent_core_pathnames: List[Union[str, re.Pattern]] = [
+        "/core/independent-page/demo",
+        wildcard_patterns["独立通配页面演示"],
+    ]
 
     # 部分页面pathname对应要展开的子菜单层级
     side_menu_open_keys: dict = {

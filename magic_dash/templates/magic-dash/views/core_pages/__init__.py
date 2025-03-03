@@ -1,14 +1,40 @@
+import re
 from dash import html, dcc
 import feffery_antd_components as fac
 import feffery_utils_components as fuc
 from feffery_dash_utils.style_utils import style
 
 from components import core_side_menu
-from views.core_pages import independent_page_demo
 from configs import BaseConfig, RouterConfig, LayoutConfig
+from views.core_pages import independent_page_demo, independent_wildcard_page_demo
 
 # 令绑定的回调函数子模块生效
 import callbacks.core_pages_c  # noqa: F401
+
+
+def get_page_search_options():
+    """当前模块内工具函数，生成页面搜索选项"""
+
+    options = [{"label": "首页", "value": "/"}]
+
+    for pathname, title in RouterConfig.valid_pathnames.items():
+        # 忽略已添加的首页
+        if pathname in [RouterConfig.index_pathname, "/"]:
+            pass
+
+        # 忽略正则表达式通配页面
+        elif isinstance(pathname, re.Pattern):
+            pass
+
+        else:
+            options.append(
+                {
+                    "label": title,
+                    "value": f"{pathname}|{title}",
+                }
+            )
+
+    return options
 
 
 def render(current_pathname: str = None):
@@ -23,6 +49,24 @@ def render(current_pathname: str = None):
         # 返回不同地址规则对应页面内容
         if current_pathname == "/core/independent-page/demo":
             return independent_page_demo.render()
+
+    # 判断是否需要独立通配渲染
+    elif any(
+        pattern.match(current_pathname)
+        for pattern in RouterConfig.independent_core_pathnames
+        if isinstance(pattern, re.Pattern)
+    ):
+        # 获取命中当前地址的第一个通配规则
+        match_pattern = None
+        for pattern in RouterConfig.independent_core_pathnames:
+            if isinstance(pattern, re.Pattern):
+                if pattern.match(current_pathname):
+                    # 更新命中的通配规则
+                    match_pattern = pattern
+                    break
+        # 返回不同地址通配规则对应页面内容
+        if match_pattern == RouterConfig.wildcard_patterns["独立通配页面演示"]:
+            return independent_wildcard_page_demo.render(pathname=current_pathname)
 
     return html.Div(
         [
@@ -109,16 +153,7 @@ def render(current_pathname: str = None):
                                         fac.AntdSelect(
                                             id="core-page-search",
                                             placeholder="输入关键词搜索页面",
-                                            options=[
-                                                {
-                                                    "label": title,
-                                                    "value": f"{pathname}|{title}",
-                                                }
-                                                for pathname, title in RouterConfig.valid_pathnames.items()
-                                                # 忽略重复的首页备选地址
-                                                if pathname
-                                                != RouterConfig.index_pathname
-                                            ],
+                                            options=get_page_search_options(),
                                             variant="filled",
                                             style=style(width=250),
                                         ),

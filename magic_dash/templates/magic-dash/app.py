@@ -1,3 +1,4 @@
+import re
 import dash
 from dash import html, set_props
 import feffery_antd_components as fac
@@ -59,7 +60,17 @@ def root_router(pathname, trigger):
         return _500.render()
 
     # 检查当前访问目标pathname是否为有效页面
-    if pathname in RouterConfig.valid_pathnames.keys():
+    if (
+        # 硬编码页面地址
+        pathname in RouterConfig.valid_pathnames.keys()
+        or
+        # 通配模式页面地址
+        any(
+            pattern.match(pathname)
+            for pattern in RouterConfig.valid_pathnames.keys()
+            if isinstance(pattern, re.Pattern)
+        )
+    ):
         # 处理核心功能页面渲染
         return core_pages.render(current_pathname=pathname)
 
