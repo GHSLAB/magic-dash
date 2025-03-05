@@ -104,7 +104,7 @@ magic-dash-pro
 
 > `BaseConfig.enable_duplicate_login_check`
 
-设置是否开启重复登录检测功能，默认值：`True`。
+设置是否开启重复登录检测功能，默认值：`False`。
 
 > `BaseConfig.duplicate_login_check_interval`
 

@@ -25,7 +25,7 @@ class BaseConfig:
     strict_browser_type_check: bool = False
 
     # 是否启用重复登录辅助检查
-    enable_duplicate_login_check: bool = True
+    enable_duplicate_login_check: bool = False
 
     # 重复登录辅助检查轮询间隔时间，单位：秒
     duplicate_login_check_interval: Union[int, float] = 10
