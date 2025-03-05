@@ -55,6 +55,8 @@ magic_dash/templates/magic-dash-pro/views/login.py
 magic_dash/templates/magic-dash-pro/views/core_pages/__init__.py
 magic_dash/templates/magic-dash-pro/views/core_pages/independent_page.py
 magic_dash/templates/magic-dash-pro/views/core_pages/independent_page_demo.py
+magic_dash/templates/magic-dash-pro/views/core_pages/independent_wildcard_page.py
+magic_dash/templates/magic-dash-pro/views/core_pages/independent_wildcard_page_demo.py
 magic_dash/templates/magic-dash-pro/views/core_pages/index.py
 magic_dash/templates/magic-dash-pro/views/core_pages/page1.py
 magic_dash/templates/magic-dash-pro/views/core_pages/sub_menu_page1.py
@@ -86,6 +88,8 @@ magic_dash/templates/magic-dash/views/__init__.py
 magic_dash/templates/magic-dash/views/core_pages/__init__.py
 magic_dash/templates/magic-dash/views/core_pages/independent_page.py
 magic_dash/templates/magic-dash/views/core_pages/independent_page_demo.py
+magic_dash/templates/magic-dash/views/core_pages/independent_wildcard_page.py
+magic_dash/templates/magic-dash/views/core_pages/independent_wildcard_page_demo.py
 magic_dash/templates/magic-dash/views/core_pages/index.py
 magic_dash/templates/magic-dash/views/core_pages/page1.py
 magic_dash/templates/magic-dash/views/core_pages/sub_menu_page1.py

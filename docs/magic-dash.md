@@ -103,9 +103,9 @@ magic-dash
 
 #### 4.3.3 有效页面路径&标题映射
 
-> `RouterConfig.valid_pages`
+> `RouterConfig.valid_pathnames`
 
-配置有效页面路径&标题映射参数。
+配置有效页面路径&标题映射参数，定义*通配页面规则*时建议配合`RouterConfig.wildcard_patterns`参数使用。
 
 #### 4.3.4 独立渲染页面路径
 
@@ -118,3 +118,9 @@ magic-dash
 > `RouterConfig.side_menu_open_keys`
 
 针对侧边菜单结构中隶属于子菜单的菜单项，配置对应需展开的上层菜单逐级`key`值列表。
+
+#### 4.3.6 通配页面模式字典
+
+> `RouterConfig.wildcard_patterns`
+
+基于正则表达式，配置应用中涉及到的通配页面模式字典。
