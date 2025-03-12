@@ -16,7 +16,7 @@ setup(
         "Framework :: Dash",
     ],
     url="https://github.com/CNFeffery/magic-dash",
-    python_requires=">=3.9, <3.13",
+    python_requires=">=3.8, <3.13",
     install_requires=["click"],
     entry_points={
         "console_scripts": [
