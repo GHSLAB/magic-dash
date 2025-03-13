@@ -29,3 +29,9 @@ class BaseConfig:
 
     # 重复登录辅助检查轮询间隔时间，单位：秒
     duplicate_login_check_interval: Union[int, float] = 10
+
+    # 登录会话token对应的cookies项名称
+    # 由于同一主机地址下的不同端口，在浏览器中会共享cookies
+    # 因此在同一主机地址下部署多套基于magic-dash-pro模板开发的独立项目时
+    # 请为各个项目设置不同的session_token_cookie_name
+    session_token_cookie_name: str = "session_token"

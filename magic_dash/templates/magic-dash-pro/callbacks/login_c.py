@@ -9,6 +9,7 @@ from flask_principal import identity_changed, Identity
 
 from server import app, User
 from models.users import Users
+from configs import BaseConfig
 
 
 @app.callback(
@@ -114,7 +115,9 @@ def handle_login(nClicks, nSubmit, values, remember_me):
         login_user(new_user, remember=remember_me)
 
         # 在cookies更新ession_token字段
-        dash.ctx.response.set_cookie("session_token", new_session_token)
+        dash.ctx.response.set_cookie(
+            BaseConfig.session_token_cookie_name, new_session_token
+        )
 
         # 更新用户身份信息
         identity_changed.send(app.server, identity=Identity(new_user.id))

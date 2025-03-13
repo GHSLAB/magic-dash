@@ -201,7 +201,9 @@ def duplicate_login_check(n_intervals, pathname):
     elif current_user.is_authenticated:
         match_user = Users.get_user(current_user.id)
         # 若当前回调请求携带cookies中的session_token，当前用户数据库中的最新session_token不一致
-        if match_user.session_token != request.cookies.get("session_token"):
+        if match_user.session_token != request.cookies.get(
+            BaseConfig.session_token_cookie_name
+        ):
             # 重定向到登出页
             set_props(
                 "global-redirect",
