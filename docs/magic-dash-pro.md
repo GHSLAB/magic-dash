@@ -110,6 +110,10 @@ magic-dash-pro
 
 设置重复登录检测间隔时间，单位：秒，默认值：`10`。
 
+> `BaseConfig.session_token_cookie_name`
+
+登录会话token对应的cookies项名称，默认值：`"session_token"`。
+
 ### 4.2 布局配置
 
 #### 4.2.1 核心页面侧边栏宽度
