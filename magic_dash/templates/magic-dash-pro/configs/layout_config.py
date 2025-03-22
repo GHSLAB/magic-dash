@@ -9,3 +9,6 @@ class LayoutConfig:
 
     # 登录页面左侧内容形式，可选项有'image'（图片内容）、'video'（视频内容）
     login_left_side_content_type: Literal["image", "video"] = "image"
+
+    # 核心页面呈现类型，可选项有'single'（单页面形式）、'tabs'（多标签页形式）
+    core_layout_type: Literal["single", "tabs"] = "tabs"

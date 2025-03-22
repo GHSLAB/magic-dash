@@ -97,10 +97,15 @@ def render(current_user_access_rule: str, current_pathname: str = None):
             # 核心页面常量参数数据
             dcc.Store(
                 id="core-page-config",
-                data=dict(core_side_width=LayoutConfig.core_side_width),
+                data=dict(
+                    core_side_width=LayoutConfig.core_side_width,
+                    core_layout_type=LayoutConfig.core_layout_type,
+                ),
             ),
             # 核心页面独立路由监听
             dcc.Location(id="core-url"),
+            # 核心页面pathname静默更新
+            dcc.Location(id="core-silently-update-pathname", refresh="callback-nav"),
             # ctrl+k快捷键监听
             fuc.FefferyKeyPress(id="core-ctrl-k-key-press", keys="ctrl.k"),
             # 注入个人信息模态框
@@ -347,14 +352,28 @@ def render(current_user_access_rule: str, current_pathname: str = None):
                     ),
                     # 内容区域
                     fac.AntdCol(
-                        fac.AntdSkeleton(
-                            html.Div(
-                                id="core-container", style=style(padding="36px 42px")
-                            ),
-                            listenPropsMode="include",
-                            includeProps=["core-container.children"],
-                            active=True,
-                            style=style(padding="36px 42px"),
+                        # 根据页面呈现类型，渲染具有相同id的页面挂载目标组件
+                        (
+                            # 单页面形式
+                            fac.AntdSkeleton(
+                                html.Div(
+                                    id="core-container",
+                                    style=style(padding="36px 42px"),
+                                ),
+                                listenPropsMode="include",
+                                includeProps=["core-container.children"],
+                                active=True,
+                                style=style(padding="36px 42px"),
+                            )
+                            if LayoutConfig.core_layout_type == "single"
+                            # 多标签页形式
+                            else fac.AntdTabs(
+                                id="core-container",
+                                items=[],
+                                type="editable-card",
+                                size="small",
+                                style=style(padding="6px 12px"),
+                            )
                         ),
                         flex="auto",
                     ),
