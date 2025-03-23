@@ -1,7 +1,7 @@
 import time
 import dash
-import feffery_antd_components as fac
 from dash import set_props, Patch
+import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State, ClientsideFunction
 
 from server import app

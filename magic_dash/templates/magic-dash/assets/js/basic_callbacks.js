@@ -65,6 +65,53 @@ window.dash_clientside = Object.assign({}, window.dash_clientside, {
         // 控制ctrl+k快捷键触发页面搜索框聚焦
         handleCorePageSearchFocus: (pressedCounts) => {
             return [true, pressedCounts.toString()]
+        },
+        // 处理多标签页形式下的标签页关闭操作
+        handleCoreTabsClose: (tabCloseCounts, clickedContextMenu, latestDeletePane, items) => {
+            // 获取本次回调触发来源信息
+            callbackTriggered = window.dash_clientside.callback_context.triggered[0];
+
+            // 若本次回调由标签页标题右键菜单操作触发
+            if (callbackTriggered.prop_id.endsWith('clickedContextMenu')) {
+                if (clickedContextMenu.menuKey === '关闭当前') {
+                    // 计算下一状态对应标签页子项列表
+                    let next_items = items.filter(item => item.key !== clickedContextMenu.tabKey);
+
+                    return [
+                        next_items,
+                        // 默认在下一状态选中末尾的有效标签页
+                        next_items[next_items.length - 1].key
+                    ];
+                } else if (clickedContextMenu.menuKey === '关闭其他') {
+                    // 计算下一状态对应标签页子项列表
+                    let next_items = items.filter(item => (item.key === clickedContextMenu.tabKey) || (item.key === '/'));
+
+                    return [
+                        next_items,
+                        // 下一状态激活当前触发源标签页
+                        clickedContextMenu.tabKey
+                    ];
+                } else if (clickedContextMenu.menuKey == '关闭所有') {
+                    // 计算下一状态对应标签页子项列表
+                    let next_items = items.filter(item => item.key === '/');
+
+                    return [
+                        next_items,
+                        // 下一状态激活首页标签页
+                        '/'
+                    ];
+                }
+            }
+
+            // 否则，则本次回调由标签页关闭按钮触发
+            // 计算下一状态对应标签页子项列表
+            let next_items = items.filter(item => item.key !== latestDeletePane);
+
+            return [
+                next_items,
+                // 默认在下一状态选中末尾的有效标签页
+                next_items[next_items.length - 1].key
+            ];
         }
     }
 });

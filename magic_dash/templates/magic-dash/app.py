@@ -22,7 +22,7 @@ app.layout = lambda: fuc.FefferyTopProgress(
         ),
     ],
     listenPropsMode="include",
-    includeProps=["root-container.children"],
+    includeProps=["root-container.children", "core-container.children"],
     minimum=0.33,
     color="#1677ff",
 )
