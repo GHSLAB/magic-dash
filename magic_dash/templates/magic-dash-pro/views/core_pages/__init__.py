@@ -215,6 +215,13 @@ def render(current_user_access_rule: str, current_pathname: str = None):
                                         ),
                                     ],
                                     size=5,
+                                    style=style(
+                                        **(
+                                            {}
+                                            if LayoutConfig.show_core_page_search
+                                            else {"visibility": "hidden"}
+                                        )
+                                    ),
                                 ),
                                 # 功能图标+用户信息
                                 fac.AntdSpace(
