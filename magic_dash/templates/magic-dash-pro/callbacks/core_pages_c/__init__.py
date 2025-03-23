@@ -173,6 +173,9 @@ def core_router(
                         "key": "/",
                         "children": index.render(),
                         "closable": False,
+                        "contextMenu": [
+                            {"key": key, "label": key} for key in ["关闭其他"]
+                        ],
                     }
                 )
             else:
@@ -183,11 +186,18 @@ def core_router(
                             "key": "/",
                             "children": index.render(),
                             "closable": False,
+                            "contextMenu": [
+                                {"key": key, "label": key} for key in ["关闭其他"]
+                            ],
                         },
                         {
                             "label": RouterConfig.valid_pathnames[pathname],
                             "key": pathname,
                             "children": page_content,
+                            "contextMenu": [
+                                {"key": key, "label": key}
+                                for key in ["关闭当前", "关闭其他", "关闭所有"]
+                            ],
                         },
                     ]
                 )
@@ -209,6 +219,10 @@ def core_router(
                             "label": RouterConfig.valid_pathnames[pathname],
                             "key": pathname,
                             "children": page_content,
+                            "contextMenu": [
+                                {"key": key, "label": key}
+                                for key in ["关闭当前", "关闭其他", "关闭所有"]
+                            ],
                         }
                     )
                     next_active_key = pathname
@@ -244,28 +258,18 @@ def core_router(
     ]
 
 
-@app.callback(
+app.clientside_callback(
+    ClientsideFunction(
+        namespace="clientside_basic", function_name="handleCoreTabsClose"
+    ),
     [
         Output("core-container", "items", allow_duplicate=True),
         Output("core-container", "activeKey", allow_duplicate=True),
     ],
-    Input("core-container", "tabCloseCounts"),
-    [State("core-container", "latestDeletePane"), State("core-container", "itemKeys")],
+    [
+        Input("core-container", "tabCloseCounts"),
+        Input("core-container", "clickedContextMenu"),
+    ],
+    [State("core-container", "latestDeletePane"), State("core-container", "items")],
     prevent_initial_call=True,
 )
-def handle_tabs_delete(tabCloseCounts, lastDeletePane, itemKeys):
-    """处理标签页子项删除操作"""
-
-    p = Patch()
-
-    # 远程映射删除目标子项
-    del p[itemKeys.index(lastDeletePane)]
-
-    # 生成下一状态标签页子项key值数组
-    next_item_keys = [key for key in itemKeys if key != lastDeletePane]
-
-    return [
-        p,
-        # 在删除后，更新选中最后一个子项
-        next_item_keys[-1],
-    ]
