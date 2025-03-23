@@ -87,6 +87,18 @@ magic-dash
 
 设置核心页面侧边栏像素宽度，默认值：`350`。
 
+#### 4.2.2 核心页面呈现类型
+
+> `LayoutConfig.core_layout_type`
+
+设置核心页面呈现类型，默认值：`single`，可选项有`single`（单页面形式）、`tabs`（多标签页形式）。
+
+#### 4.2.3 页面搜索框展示
+
+> `LayoutConfig.show_core_page_search`
+
+设置页首中的页面搜索框是否展示，默认值：`True`。
+
 ### 4.3 路由配置
 
 #### 4.3.1 首页路径别名

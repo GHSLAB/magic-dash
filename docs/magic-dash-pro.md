@@ -112,7 +112,7 @@ magic-dash-pro
 
 > `BaseConfig.session_token_cookie_name`
 
-登录会话token对应的cookies项名称，默认值：`"session_token"`。
+登录会话token对应的cookies项名称，默认值：`session_token`。
 
 ### 4.2 布局配置
 
@@ -127,6 +127,18 @@ magic-dash-pro
 > `LayoutConfig.login_left_side_content_type`
 
 设置登录页面左侧内容类型，默认值：`image`，可选项有`image`（图片内容）、`video`（视频内容）。
+
+#### 4.2.3 核心页面呈现类型
+
+> `LayoutConfig.core_layout_type`
+
+设置核心页面呈现类型，默认值：`single`，可选项有`single`（单页面形式）、`tabs`（多标签页形式）。
+
+#### 4.2.4 页面搜索框展示
+
+> `LayoutConfig.show_core_page_search`
+
+设置页首中的页面搜索框是否展示，默认值：`True`。
 
 ### 4.3 路由配置
 
