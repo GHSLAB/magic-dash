@@ -160,7 +160,8 @@ def core_router(
                         "children": index.render(),
                         "closable": False,
                         "contextMenu": [
-                            {"key": key, "label": key} for key in ["关闭其他"]
+                            {"key": key, "label": key}
+                            for key in ["关闭其他", "刷新页面"]
                         ],
                     }
                 )
@@ -173,7 +174,8 @@ def core_router(
                             "children": index.render(),
                             "closable": False,
                             "contextMenu": [
-                                {"key": key, "label": key} for key in ["关闭其他"]
+                                {"key": key, "label": key}
+                                for key in ["关闭其他", "刷新页面"]
                             ],
                         },
                         {
@@ -182,7 +184,12 @@ def core_router(
                             "children": page_content,
                             "contextMenu": [
                                 {"key": key, "label": key}
-                                for key in ["关闭当前", "关闭其他", "关闭所有"]
+                                for key in [
+                                    "关闭当前",
+                                    "关闭其他",
+                                    "关闭所有",
+                                    "刷新页面",
+                                ]
                             ],
                         },
                     ]
@@ -207,7 +214,12 @@ def core_router(
                             "children": page_content,
                             "contextMenu": [
                                 {"key": key, "label": key}
-                                for key in ["关闭当前", "关闭其他", "关闭所有"]
+                                for key in [
+                                    "关闭当前",
+                                    "关闭其他",
+                                    "关闭所有",
+                                    "刷新页面",
+                                ]
                             ],
                         }
                     )

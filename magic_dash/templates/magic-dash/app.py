@@ -14,6 +14,8 @@ app.layout = lambda: fuc.FefferyTopProgress(
     [
         # 全局消息提示
         fac.Fragment(id="global-message"),
+        # 全局页面刷新
+        fuc.FefferyReload(id="global-reload"),
         # 根节点url监听
         fuc.FefferyLocation(id="root-url"),
         # 应用根容器

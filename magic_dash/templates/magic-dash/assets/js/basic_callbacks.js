@@ -91,7 +91,7 @@ window.dash_clientside = Object.assign({}, window.dash_clientside, {
                         // 下一状态激活当前触发源标签页
                         clickedContextMenu.tabKey
                     ];
-                } else if (clickedContextMenu.menuKey == '关闭所有') {
+                } else if (clickedContextMenu.menuKey === '关闭所有') {
                     // 计算下一状态对应标签页子项列表
                     let next_items = items.filter(item => item.key === '/');
 
@@ -100,6 +100,17 @@ window.dash_clientside = Object.assign({}, window.dash_clientside, {
                         // 下一状态激活首页标签页
                         '/'
                     ];
+                } else if (clickedContextMenu.menuKey === '刷新页面') {
+
+                    // 触发页面刷新
+                    window.dash_clientside.set_props(
+                        'global-reload',
+                        {
+                            reload: true
+                        }
+                    )
+
+                    return window.dash_clientside.no_update;
                 }
             }
 
