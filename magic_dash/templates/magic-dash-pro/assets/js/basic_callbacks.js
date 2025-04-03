@@ -100,6 +100,17 @@ window.dash_clientside = Object.assign({}, window.dash_clientside, {
                         // 下一状态激活首页标签页
                         '/'
                     ];
+                } else if (clickedContextMenu.menuKey === '刷新页面') {
+
+                    // 触发页面刷新
+                    window.dash_clientside.set_props(
+                        'global-reload',
+                        {
+                            reload: true
+                        }
+                    )
+
+                    return window.dash_clientside.no_update;
                 }
             }
 

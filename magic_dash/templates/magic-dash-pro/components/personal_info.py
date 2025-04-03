@@ -4,7 +4,6 @@ import dash
 from dash import set_props
 from flask_login import current_user
 import feffery_antd_components as fac
-import feffery_utils_components as fuc
 from feffery_dash_utils.style_utils import style
 from dash.dependencies import Input, Output, State
 from werkzeug.security import generate_password_hash
@@ -144,5 +143,5 @@ def handle_personal_info_update(okCounts, values):
             # 页面延时刷新
             set_props(
                 "global-reload",
-                {"children": fuc.FefferyReload(reload=True, delay=2000)},
+                {"reload": True, "delay": 2000},
             )

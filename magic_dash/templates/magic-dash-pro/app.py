@@ -21,8 +21,8 @@ app.layout = lambda: fuc.FefferyTopProgress(
         fac.Fragment(id="global-message"),
         # 全局重定向
         fac.Fragment(id="global-redirect"),
-        # 全局页面重载
-        fac.Fragment(id="global-reload"),
+        # 全局页面刷新
+        fuc.FefferyReload(id="global-reload"),
         *(
             [
                 # 重复登录辅助检查轮询
