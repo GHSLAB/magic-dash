@@ -285,3 +285,19 @@ app.clientside_callback(
     [State("core-container", "latestDeletePane"), State("core-container", "items")],
     prevent_initial_call=True,
 )
+
+app.clientside_callback(
+    ClientsideFunction(
+        namespace="clientside_basic", function_name="handleCoreFullscreenToggle"
+    ),
+    [
+        Output("core-fullscreen", "isFullscreen"),
+        Output("core-full-screen-toggle-button-icon", "icon"),
+    ],
+    [
+        Input("core-full-screen-toggle-button", "nClicks"),
+        Input("core-fullscreen", "isFullscreen"),
+    ],
+    State("core-full-screen-toggle-button-icon", "icon"),
+    prevent_initial_call=True,
+)
