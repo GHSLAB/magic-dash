@@ -123,6 +123,22 @@ window.dash_clientside = Object.assign({}, window.dash_clientside, {
                 // 默认在下一状态选中末尾的有效标签页
                 next_items[next_items.length - 1].key
             ];
+        },
+        handleCoreFullscreenToggle: (nClicks, isFullscreen, icon) => {
+
+            let _isFullscreen;
+
+            if (window.dash_clientside.callback_context.triggered_id === 'core-fullscreen') {
+                _isFullscreen = isFullscreen
+            } else {
+                _isFullscreen = icon === 'antd-full-screen'
+            }
+
+            return (
+                _isFullscreen ?
+                    [true, 'antd-full-screen-exit'] :
+                    [false, 'antd-full-screen']
+            )
         }
     }
 });

@@ -84,6 +84,10 @@ def render(current_pathname: str = None):
             dcc.Location(id="core-silently-update-pathname", refresh="callback-nav"),
             # ctrl+k快捷键监听
             fuc.FefferyKeyPress(id="core-ctrl-k-key-press", keys="ctrl.k"),
+            # 全屏化切换
+            fuc.FefferyFullscreen(
+                id="core-fullscreen",
+            ),
             # 页首
             fac.AntdRow(
                 [
@@ -189,7 +193,17 @@ def render(current_pathname: str = None):
                                 # 功能图标+用户信息
                                 fac.AntdSpace(
                                     [
-                                        # 示例功能图标1
+                                        # 页面全屏化切换
+                                        fac.AntdButton(
+                                            id="core-full-screen-toggle-button",
+                                            icon=fac.AntdIcon(
+                                                id="core-full-screen-toggle-button-icon",
+                                                icon="antd-full-screen",
+                                                className="global-help-text",
+                                            ),
+                                            type="text",
+                                        ),
+                                        # 示例功能图标
                                         fac.AntdButton(
                                             icon=fac.AntdIcon(
                                                 icon="antd-setting",
@@ -197,7 +211,7 @@ def render(current_pathname: str = None):
                                             ),
                                             type="text",
                                         ),
-                                        # 示例功能图标2
+                                        # 示例功能图标
                                         fac.AntdButton(
                                             icon=fac.AntdIcon(
                                                 icon="antd-bell",
@@ -205,7 +219,7 @@ def render(current_pathname: str = None):
                                             ),
                                             type="text",
                                         ),
-                                        # 示例功能图标3
+                                        # 示例功能图标
                                         fac.AntdButton(
                                             icon=fac.AntdIcon(
                                                 icon="antd-question-circle",
