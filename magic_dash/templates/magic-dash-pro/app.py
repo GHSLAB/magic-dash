@@ -170,6 +170,18 @@ def root_router(pathname, trigger):
                 return dash.no_update
 
         # 处理核心功能页面渲染
+        # 返回带水印的页面内容
+        if BaseConfig.enable_fullscreen_watermark:
+            return fac.AntdWatermark(
+                core_pages.render(
+                    current_user_access_rule=current_user_access_rule,
+                    current_pathname=pathname,
+                ),
+                # 处理水印内容生成
+                content=BaseConfig.fullscreen_watermark_generator(current_user),
+            )
+
+        # 返回不带水印的页面内容
         return core_pages.render(
             current_user_access_rule=current_user_access_rule, current_pathname=pathname
         )

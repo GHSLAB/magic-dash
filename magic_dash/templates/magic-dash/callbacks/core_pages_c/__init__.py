@@ -72,18 +72,16 @@ app.clientside_callback(
         Output("core-side-menu", "openKeys"),
         Output("core-silently-update-pathname", "pathname"),
     ],
-    [Input("core-url", "pathname"), Input("core-container", "activeKey")],
+    [
+        Input("core-url", "pathname"),
+        Input("core-container", "activeKey"),
+    ],
     [
         State("core-container", "itemKeys"),
         State("core-page-config", "data"),
     ],
 )
-def core_router(
-    pathname,
-    tabs_active_key,
-    tabs_item_keys,
-    page_config,
-):
+def core_router(pathname, tabs_active_key, tabs_item_keys, page_config):
     """核心页面路由控制及侧边菜单同步"""
 
     # 统一首页pathname
