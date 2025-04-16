@@ -4,15 +4,15 @@ from dash import html, set_props
 import feffery_antd_components as fac
 import feffery_utils_components as fuc
 from dash.dependencies import Input, Output, State
+from feffery_dash_utils.version_utils import (
+    check_python_version,
+    check_dependencies_version,
+)
 
 from server import app
 from configs import RouterConfig  # 路由配置参数
 from views.status_pages import _404, _500  # 各状态页面
 from views import core_pages
-from feffery_dash_utils.version_utils import (
-    check_python_version,
-    check_dependencies_version,
-)
 
 # 检查Python版本
 check_python_version(min_version="3.8", max_version="3.12")
