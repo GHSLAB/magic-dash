@@ -46,6 +46,16 @@ class User(UserMixin):
 def user_loader(user_id):
     """flask-login内部专用用户加载函数"""
 
+    # 避免非关键请求触发常规用户加载逻辑
+    if any(
+        [
+            request.path in ["/_reload-hash", "/_dash-layout", "/_dash-dependencies"],
+            request.path.startswith("/assets/"),
+            request.path.startswith("/_dash-component-suites/"),
+        ]
+    ):
+        return AnonymousUserMixin()
+
     # 根据当前要加载的用户id，从数据库中获取匹配用户信息
     match_user = Users.get_user(user_id)
 
