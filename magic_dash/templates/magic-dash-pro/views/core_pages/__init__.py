@@ -231,38 +231,64 @@ def render(current_user_access_rule: str, current_pathname: str = None):
                                 fac.AntdSpace(
                                     [
                                         # 页面全屏化切换
-                                        fac.AntdButton(
-                                            id="core-full-screen-toggle-button",
-                                            icon=fac.AntdIcon(
-                                                id="core-full-screen-toggle-button-icon",
-                                                icon="antd-full-screen",
-                                                className="global-help-text",
+                                        fac.AntdTooltip(
+                                            fac.AntdButton(
+                                                id="core-full-screen-toggle-button",
+                                                icon=fac.AntdIcon(
+                                                    id="core-full-screen-toggle-button-icon",
+                                                    icon="antd-full-screen",
+                                                    className="global-help-text",
+                                                ),
+                                                type="text",
                                             ),
-                                            type="text",
+                                            title="全屏切换",
+                                        ),
+                                        # 页面重载
+                                        fac.AntdTooltip(
+                                            fac.AntdButton(
+                                                id="core-reload-button",
+                                                icon=fac.AntdIcon(
+                                                    icon="antd-reload",
+                                                    className="global-help-text",
+                                                ),
+                                                type="text",
+                                                # 省略回调函数的编写
+                                                clickExecuteJsString='dash_clientside.set_props("global-reload", { reload: true })',
+                                            ),
+                                            title="页面重载",
                                         ),
                                         # 示例功能图标
-                                        fac.AntdButton(
-                                            icon=fac.AntdIcon(
-                                                icon="antd-setting",
-                                                className="global-help-text",
+                                        fac.AntdTooltip(
+                                            fac.AntdButton(
+                                                icon=fac.AntdIcon(
+                                                    icon="antd-setting",
+                                                    className="global-help-text",
+                                                ),
+                                                type="text",
                                             ),
-                                            type="text",
+                                            title="示例功能图标",
                                         ),
                                         # 示例功能图标
-                                        fac.AntdButton(
-                                            icon=fac.AntdIcon(
-                                                icon="antd-bell",
-                                                className="global-help-text",
+                                        fac.AntdTooltip(
+                                            fac.AntdButton(
+                                                icon=fac.AntdIcon(
+                                                    icon="antd-bell",
+                                                    className="global-help-text",
+                                                ),
+                                                type="text",
                                             ),
-                                            type="text",
+                                            title="示例功能图标",
                                         ),
                                         # 示例功能图标
-                                        fac.AntdButton(
-                                            icon=fac.AntdIcon(
-                                                icon="antd-question-circle",
-                                                className="global-help-text",
+                                        fac.AntdTooltip(
+                                            fac.AntdButton(
+                                                icon=fac.AntdIcon(
+                                                    icon="antd-question-circle",
+                                                    className="global-help-text",
+                                                ),
+                                                type="text",
                                             ),
-                                            type="text",
+                                            title="示例功能图标",
                                         ),
                                         # 自定义分隔符
                                         html.Div(
