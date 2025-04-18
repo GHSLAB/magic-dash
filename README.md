@@ -11,7 +11,7 @@
 
 </div>
 
-命令行工具，用于快捷生成一系列开箱即用✨的标准[Dash](https://github.com/plotly/dash)应用工程模板。
+命令行工具，用于快捷生成一系列开箱即用✨的标准[Dash](https://github.com/plotly/dash)应用工程模板，加速你的应用开发进程🚀。
 
 ## 目录
 
