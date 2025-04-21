@@ -114,6 +114,21 @@ magic-dash-pro
 
 登录会话token对应的cookies项名称，默认值：`session_token`。
 
+#### 4.1.6 全屏水印
+
+> `BaseConfig.enable_fullscreen_watermark`
+
+设置是否开启全屏额外水印功能，默认值：`False`。
+
+> `BaseConfig.fullscreen_watermark_generator`
+
+接受`lambda`函数或常规函数方法，用于动态处理实际水印内容输出，默认值：
+
+```python
+# 其中current_user对应flask-login中的当前用户对象
+lambda current_user: current_user.user_name
+```
+
 ### 4.2 布局配置
 
 #### 4.2.1 核心页面侧边栏宽度
