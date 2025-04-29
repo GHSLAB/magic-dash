@@ -33,19 +33,22 @@ class Users(BaseModel):
     def get_user(cls, user_id: str):
         """根据用户id查询用户信息"""
 
-        return cls.get_or_none(cls.user_id == user_id)
+        with db.connection_context():
+            return cls.get_or_none(cls.user_id == user_id)
 
     @classmethod
     def get_user_by_name(cls, user_name: str):
         """根据用户名查询用户信息"""
 
-        return cls.get_or_none(cls.user_name == user_name)
+        with db.connection_context():
+            return cls.get_or_none(cls.user_name == user_name)
 
     @classmethod
     def get_all_users(cls):
         """获取所有用户信息"""
 
-        return list(cls.select().dicts())
+        with db.connection_context():
+            return list(cls.select().dicts())
 
     @classmethod
     def check_user_password(cls, user_id: str, password: str):
@@ -64,41 +67,44 @@ class Users(BaseModel):
     ):
         """添加用户"""
 
-        # 若必要用户信息不完整
-        if not (user_id and user_name and password_hash):
-            raise InvalidUserError("用户信息不完整")
+        with db.connection_context():
+            # 若必要用户信息不完整
+            if not (user_id and user_name and password_hash):
+                raise InvalidUserError("用户信息不完整")
 
-        # 若用户id已存在
-        elif cls.get_or_none(cls.user_id == user_id):
-            raise ExistingUserError("用户id已存在")
+            # 若用户id已存在
+            elif cls.get_or_none(cls.user_id == user_id):
+                raise ExistingUserError("用户id已存在")
 
-        # 若用户名存在重复
-        elif cls.get_or_none(cls.user_name == user_name):
-            raise ExistingUserError("用户名已存在")
+            # 若用户名存在重复
+            elif cls.get_or_none(cls.user_name == user_name):
+                raise ExistingUserError("用户名已存在")
 
-        # 执行用户添加操作
-        with db.atomic():
-            cls.create(
-                user_id=user_id,
-                user_name=user_name,
-                password_hash=password_hash,
-                user_role=user_role,
-                other_info=other_info,
-            )
+            # 执行用户添加操作
+            with db.atomic():
+                cls.create(
+                    user_id=user_id,
+                    user_name=user_name,
+                    password_hash=password_hash,
+                    user_role=user_role,
+                    other_info=other_info,
+                )
 
     @classmethod
     def delete_user(cls, user_id: str):
         """删除用户"""
 
-        with db.atomic():
-            cls.delete().where(cls.user_id == user_id).execute()
+        with db.connection_context():
+            with db.atomic():
+                cls.delete().where(cls.user_id == user_id).execute()
 
     @classmethod
     def update_user(cls, user_id: str, **kwargs):
         """更新用户信息"""
 
-        with db.atomic():
-            cls.update(**kwargs).where(cls.user_id == user_id).execute()
+        with db.connection_context():
+            with db.atomic():
+                cls.update(**kwargs).where(cls.user_id == user_id).execute()
 
-        # 返回成功更新后的用户信息
-        return cls.get_or_none(cls.user_id == user_id)
+            # 返回成功更新后的用户信息
+            return cls.get_or_none(cls.user_id == user_id)
