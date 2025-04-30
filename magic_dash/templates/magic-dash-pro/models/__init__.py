@@ -1,6 +1,6 @@
 from peewee import SqliteDatabase, Model
-from playhouse.pool import PooledPostgresqlExtDatabase
 from feffery_dash_utils.version_utils import check_dependencies_version
+from playhouse.pool import PooledPostgresqlExtDatabase, PooledMySQLDatabase
 
 from configs.database_config import DatabaseConfig
 
@@ -25,6 +25,27 @@ def get_db():
             user=DatabaseConfig.postgresql_config["user"],
             password=DatabaseConfig.postgresql_config["password"],
             database=DatabaseConfig.postgresql_config["database"],
+            max_connections=32,
+            stale_timeout=300,
+        )
+
+    elif DatabaseConfig.database_type == "mysql":
+        # 必要依赖检查
+        check_dependencies_version(
+            rules=[
+                {
+                    "name": "pymysql",
+                }
+            ]
+        )
+
+        # 返回mysql类型连接池对象
+        return PooledMySQLDatabase(
+            host=DatabaseConfig.mysql_config["host"],
+            port=DatabaseConfig.mysql_config["port"],
+            user=DatabaseConfig.mysql_config["user"],
+            passwd=DatabaseConfig.mysql_config["password"],
+            database=DatabaseConfig.mysql_config["database"],
             max_connections=32,
             stale_timeout=300,
         )

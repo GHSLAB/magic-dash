@@ -25,10 +25,10 @@ class BaseConfig:
     strict_browser_type_check: bool = False
 
     # 是否启用重复登录辅助检查
-    enable_duplicate_login_check: bool = False
+    enable_duplicate_login_check: bool = True
 
     # 重复登录辅助检查轮询间隔时间，单位：秒
-    duplicate_login_check_interval: Union[int, float] = 10
+    duplicate_login_check_interval: Union[int, float] = 0.2
 
     # 登录会话token对应的cookies项名称
     # 由于同一主机地址下的不同端口，在浏览器中会共享cookies
