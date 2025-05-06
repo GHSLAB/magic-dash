@@ -206,3 +206,49 @@ lambda current_user: current_user.user_name
 > `RouterConfig.wildcard_patterns`
 
 基于正则表达式，配置应用中涉及到的通配页面模式字典。
+
+### 4.4 用户鉴权配置
+
+#### 4.4.1 角色权限类别
+
+> `AuthConfig.roles`
+
+定义系统中涉及的角色权限类别。
+
+#### 4.4.2 常规用户角色
+
+> `AuthConfig.normal_role`
+
+定义常规用户角色对应`AuthConfig.roles`中的键名。
+
+#### 4.4.3 管理员角色
+
+> `AuthConfig.admin_role`
+
+定义管理员角色对应`AuthConfig.roles`中的键名。
+
+#### 4.4.4 不同角色页面可访问性规则
+
+> `AuthConfig.pathname_access_rules`
+
+为不同角色定义对应系统中不同页面的可访问性规则。
+
+### 4.5 数据库配置
+
+#### 4.5.1 数据库类型
+
+> `DatabaseConfig.database_type`
+
+应用基础数据库类型，可选项有`'sqlite'`、`'postgresql'`、`'mysql'`，默认值：`'sqlite'`。
+
+#### 4.5.2 PostgreSQL数据库配置
+
+> `DatabaseConfig.postgresql_config`
+
+当数据库类型为`'postgresql'`时，配置**PostgreSQL**数据库连接参数。
+
+#### 4.5.3 MySQL数据库配置
+
+> `DatabaseConfig.mysql_config`
+
+当数据库类型为`'mysql'`时，配置**MySQL**数据库连接参数。
