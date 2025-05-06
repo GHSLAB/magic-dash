@@ -43,6 +43,7 @@ magic_dash/templates/magic-dash-pro/components/user_manage.py
 magic_dash/templates/magic-dash-pro/configs/__init__.py
 magic_dash/templates/magic-dash-pro/configs/auth_config.py
 magic_dash/templates/magic-dash-pro/configs/base_config.py
+magic_dash/templates/magic-dash-pro/configs/database_config.py
 magic_dash/templates/magic-dash-pro/configs/layout_config.py
 magic_dash/templates/magic-dash-pro/configs/router_config.py
 magic_dash/templates/magic-dash-pro/models/__init__.py

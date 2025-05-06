@@ -1,5 +1,15 @@
 # 更新日志
 
+## 0.3.2版本
+
+### 新增
+
+- `magic-dash-pro`模板新增**PostgreSQL**、**MySQL**数据库支持
+
+  具体配置见`configs/database_config.py`中的相关参数
+
+---
+
 ## 0.3.1版本
 
 ### 新增

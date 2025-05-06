@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: magic_dash
-Version: 0.3.1
+Version: 0.3.2
 Summary: A command-line tool for quickly generating standard Dash application projects.
 Home-page: https://github.com/CNFeffery/magic-dash
 Author: CNFeffery <fefferypzy@gmail.com>
@@ -36,7 +36,7 @@ Dynamic: summary
 
 </div>
 
-命令行工具，用于快捷生成一系列开箱即用✨的标准[Dash](https://github.com/plotly/dash)应用工程模板。
+命令行工具，用于快捷生成一系列开箱即用✨的标准[Dash](https://github.com/plotly/dash)应用工程模板，加速你的应用开发进程🚀。
 
 ## 目录
 
@@ -44,7 +44,8 @@ Dynamic: summary
 [2 使用](#usage)<br>
 [3 内置模板列表](#template-list)<br>
 [4 内置模板文档](#template-doc)<br>
-[5 更多应用开发教程](#courses)<br>
+[5 更新日志](#changelog)<br>
+[6 更多应用开发教程](#courses)<br>
 
 <a name="install" ></a>
 
@@ -116,9 +117,15 @@ magic-dash create --help
 | magic-dash-pro | 多页面+用户登录应用模板 | [查看](./docs/magic-dash-pro.md) |
 |  simple-tool   |   单页面工具应用模板    |  [查看](./docs/simple-tool.md)   |
 
+<a name="changelog" ></a>
+
+## 5 更新日志
+
+[历史版本更新日志](./changelog.md)
+
 <a name="courses" ></a>
 
-## 5 更多应用开发教程
+## 6 更多应用开发教程
 
 > 微信公众号「玩转 Dash」，欢迎扫码关注 👇
 
