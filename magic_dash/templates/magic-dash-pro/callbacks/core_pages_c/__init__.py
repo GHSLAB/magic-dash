@@ -90,6 +90,7 @@ def open_user_manage_drawer(nClicks, clickedKey):
     [
         State("core-container", "itemKeys"),
         State("core-page-config", "data"),
+        State("core-side-menu", "inlineCollapsed"),
     ],
 )
 def core_router(
@@ -97,6 +98,7 @@ def core_router(
     tabs_active_key,
     tabs_item_keys,
     page_config,
+    side_menu_inline_collapsed,
 ):
     """核心页面路由控制及侧边菜单同步"""
 
@@ -251,7 +253,12 @@ def core_router(
             p,
             next_active_key,
             next_current_key,
-            RouterConfig.side_menu_open_keys.get(pathname, dash.no_update),
+            (
+                # 多标签模式下，侧边菜单折叠时不更新
+                dash.no_update
+                if side_menu_inline_collapsed
+                else RouterConfig.side_menu_open_keys.get(pathname, dash.no_update)
+            ),
             # 静默更新pathname
             next_pathname,
         ]
