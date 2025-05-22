@@ -125,7 +125,7 @@ def handle_login(nClicks, nSubmit, values, remember_me):
         # 重定向至首页
         set_props(
             "global-redirect",
-            {"children": dcc.Location(pathname="/", id="global-redirect")},
+            {"children": dcc.Location(pathname="/", id="global-redirect-target")},
         )
 
     return [{}, {}]

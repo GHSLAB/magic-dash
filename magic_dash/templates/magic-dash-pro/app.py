@@ -116,7 +116,11 @@ def root_router(pathname, trigger):
             # 重定向至登录页面
             set_props(
                 "global-redirect",
-                {"children": dcc.Location(pathname="/login", id="global-redirect")},
+                {
+                    "children": dcc.Location(
+                        pathname="/login", id="global-redirect-target"
+                    )
+                },
             )
             return dash.no_update
 
@@ -125,7 +129,7 @@ def root_router(pathname, trigger):
         # 重定向至登录页面
         set_props(
             "global-redirect",
-            {"children": dcc.Location(pathname="/login", id="global-redirect")},
+            {"children": dcc.Location(pathname="/login", id="global-redirect-target")},
         )
 
         return dash.no_update
@@ -161,7 +165,7 @@ def root_router(pathname, trigger):
                         "global-redirect",
                         {
                             "children": dcc.Location(
-                                pathname="/403-demo", id="global-redirect"
+                                pathname="/403-demo", id="global-redirect-target"
                             )
                         },
                     )
@@ -177,7 +181,7 @@ def root_router(pathname, trigger):
                     "global-redirect",
                     {
                         "children": dcc.Location(
-                            pathname="/403-demo", id="global-redirect"
+                            pathname="/403-demo", id="global-redirect-target"
                         )
                     },
                 )
@@ -221,7 +225,7 @@ def duplicate_login_check(n_intervals, pathname):
         # 重定向到登出页
         set_props(
             "global-redirect",
-            {"children": dcc.Location(pathname="/logout", id="global-redirect")},
+            {"children": dcc.Location(pathname="/logout", id="global-redirect-target")},
         )
 
     # 若当前用户已登录
@@ -234,7 +238,11 @@ def duplicate_login_check(n_intervals, pathname):
             # 重定向到登出页
             set_props(
                 "global-redirect",
-                {"children": dcc.Location(pathname="/logout", id="global-redirect")},
+                {
+                    "children": dcc.Location(
+                        pathname="/logout", id="global-redirect-target"
+                    )
+                },
             )
 
 
