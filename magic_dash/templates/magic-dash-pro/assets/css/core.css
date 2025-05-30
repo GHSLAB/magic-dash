@@ -32,3 +32,7 @@
 #core-side-menu .ant-menu-submenu {
     font-size: 15px;
 }
+
+#core-side-menu .ant-menu-inline {
+    background: none !important;
+}
