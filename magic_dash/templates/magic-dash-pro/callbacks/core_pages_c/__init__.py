@@ -161,7 +161,7 @@ def core_router(
         # 更新页面返回内容
         page_content = independent_wildcard_page.render()
 
-    # 以url参数获取页面做简单示例
+    # 以url参数提取页面做简单示例
     elif pathname == "/core/url-params-page":
         # 更新页面返回内容
         page_content = url_params_page.render(current_url=current_url)

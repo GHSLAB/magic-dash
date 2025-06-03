@@ -6,7 +6,7 @@ from feffery_dash_utils.style_utils import style
 
 
 def render(current_url: str):
-    """子页面：url参数获取简单示例
+    """子页面：url参数提取简单示例
 
     Args:
         current_url (str): 当前url
@@ -17,11 +17,11 @@ def render(current_url: str):
 
     return fac.AntdSpace(
         [
-            fac.AntdBreadcrumb(items=[{"title": "主要页面"}, {"title": "url参数获取"}]),
+            fac.AntdBreadcrumb(items=[{"title": "主要页面"}, {"title": "url参数提取"}]),
             fac.AntdAlert(
                 type="info",
                 showIcon=True,
-                message="这里是url参数获取演示示例",
+                message="这里是url参数提取演示示例",
                 description=fac.AntdText(
                     [
                         "本页面模块路径：",
