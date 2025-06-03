@@ -14,6 +14,7 @@ from views.core_pages import (
     sub_menu_page3,
     independent_page,
     independent_wildcard_page,
+    url_params_page,
 )
 
 # 路由配置参数
@@ -79,9 +80,18 @@ app.clientside_callback(
     [
         State("core-container", "itemKeys"),
         State("core-page-config", "data"),
+        State("core-side-menu", "inlineCollapsed"),
+        State("core-url", "href"),
     ],
 )
-def core_router(pathname, tabs_active_key, tabs_item_keys, page_config):
+def core_router(
+    pathname,
+    tabs_active_key,
+    tabs_item_keys,
+    page_config,
+    side_menu_inline_collapsed,
+    current_url,
+):
     """核心页面路由控制及侧边菜单同步"""
 
     # 统一首页pathname
@@ -139,6 +149,11 @@ def core_router(pathname, tabs_active_key, tabs_item_keys, page_config):
     elif pathname == "/core/independent-wildcard-page":
         # 更新页面返回内容
         page_content = independent_wildcard_page.render()
+
+    # 以url参数获取页面做简单示例
+    elif pathname == "/core/url-params-page":
+        # 更新页面返回内容
+        page_content = url_params_page.render(current_url=current_url)
 
     # 多标签页形式
     if page_config.get("core_layout_type") == "tabs":
@@ -235,7 +250,12 @@ def core_router(pathname, tabs_active_key, tabs_item_keys, page_config):
             p,
             next_active_key,
             next_current_key,
-            RouterConfig.side_menu_open_keys.get(pathname, dash.no_update),
+            (
+                # 多标签模式下，侧边菜单折叠时不更新
+                dash.no_update
+                if side_menu_inline_collapsed
+                else RouterConfig.side_menu_open_keys.get(pathname, dash.no_update)
+            ),
             # 静默更新pathname
             next_pathname,
         ]

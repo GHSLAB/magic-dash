@@ -87,6 +87,15 @@ class RouterConfig:
                         "href": "/core/independent-wildcard-page",
                     },
                 },
+                {
+                    "component": "Item",
+                    "props": {
+                        "title": "url参数提取示例",
+                        "key": "/core/url-params-page",
+                        "icon": "antd-link",
+                        "href": "/core/url-params-page",
+                    },
+                },
             ],
         },
         {
@@ -124,6 +133,7 @@ class RouterConfig:
         "/core/sub-menu-page3": "子菜单演示3",
         "/core/independent-page": "独立页面渲染入口页",
         "/core/independent-wildcard-page": "独立通配页面渲染入口页",
+        "/core/url-params-page": "url参数提取示例",
         "/core/other-page1": "其他页面1",
         "/404-demo": "404状态页演示",
         "/500-demo": "500状态页演示",
