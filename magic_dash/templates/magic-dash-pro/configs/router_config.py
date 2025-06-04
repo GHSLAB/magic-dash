@@ -101,6 +101,34 @@ class RouterConfig:
         {
             "component": "ItemGroup",
             "props": {
+                "title": "系统管理",
+                "key": "系统管理",
+            },
+            "children": [
+                {
+                    "component": "SubMenu",
+                    "props": {
+                        "key": "日志管理",
+                        "title": "日志管理",
+                        "icon": "antd-history",
+                    },
+                    "children": [
+                        {
+                            "component": "Item",
+                            "props": {
+                                "key": "/core/login-logs",
+                                "title": "登录日志",
+                                "icon": "antd-login",
+                                "href": "/core/login-logs",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            "component": "ItemGroup",
+            "props": {
                 "title": "其他页面",
                 "key": "其他页面",
             },
@@ -135,6 +163,7 @@ class RouterConfig:
         "/core/independent-page": "独立页面渲染入口页",
         "/core/independent-wildcard-page": "独立通配页面渲染入口页",
         "/core/url-params-page": "url参数提取示例",
+        "/core/login-logs": "登录日志",
         "/core/other-page1": "其他页面1",
         "/403-demo": "403状态页演示",
         "/404-demo": "404状态页演示",
@@ -165,4 +194,5 @@ class RouterConfig:
         "/core/sub-menu-page1": ["子菜单演示"],
         "/core/sub-menu-page2": ["子菜单演示"],
         "/core/sub-menu-page3": ["子菜单演示"],
+        "/core/login-logs": ["日志管理"],
     }

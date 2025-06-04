@@ -38,6 +38,8 @@ app.layout = lambda: fuc.FefferyTopProgress(
         fac.Fragment(id="global-redirect"),
         # 全局页面刷新
         fuc.FefferyReload(id="global-reload"),
+        # 全局文件下载
+        dcc.Download(id="global-download"),
         *(
             [
                 # 重复登录辅助检查轮询

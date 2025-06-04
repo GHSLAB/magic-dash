@@ -15,6 +15,8 @@ from views.core_pages import (
     independent_page,
     independent_wildcard_page,
     url_params_page,
+    # 系统管理相关页面
+    login_logs,
 )
 
 # 路由配置参数
@@ -165,6 +167,12 @@ def core_router(
     elif pathname == "/core/url-params-page":
         # 更新页面返回内容
         page_content = url_params_page.render(current_url=current_url)
+
+    # 系统管理相关页面
+    # 日志管理-登录日志
+    elif pathname == "/core/login-logs":
+        # 更新页面返回内容
+        page_content = login_logs.render()
 
     # 多标签页形式
     if page_config.get("core_layout_type") == "tabs":

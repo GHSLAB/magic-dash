@@ -1,6 +1,9 @@
 import uuid
 import time
 import dash
+from flask import request
+from datetime import datetime
+from user_agents import parse
 from dash import set_props, dcc
 from flask_login import login_user
 import feffery_antd_components as fac
@@ -10,6 +13,7 @@ from flask_principal import identity_changed, Identity
 from server import app, User
 from models.users import Users
 from configs import BaseConfig
+from models.logs import LoginLogs
 
 
 @app.callback(
@@ -27,6 +31,15 @@ def handle_login(nClicks, nSubmit, values, remember_me):
     time.sleep(0.25)
 
     values = values or {}
+
+    # 提取当前登录行为对应的系统、浏览器信息
+    user_agent = parse(str(request.user_agent))
+    # 系统信息
+    os_info = "{} {}".format(user_agent.os.family, user_agent.os.version_string)
+    # 浏览器信息
+    browser_info = "{} {}".format(
+        user_agent.browser.family, user_agent.browser.version[0]
+    )
 
     # 若表单必要信息不完整
     if not (values.get("login-user-name") and values.get("login-password")):
@@ -70,6 +83,17 @@ def handle_login(nClicks, nSubmit, values, remember_me):
             },
         )
 
+        # 登录日志记录
+        LoginLogs.add_log(
+            user_name=values["login-user-name"],
+            user_id=None,  # 不存在的用户无id
+            ip=request.remote_addr,
+            browser=browser_info,
+            os=os_info,
+            status="用户不存在",
+            login_datetime=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        )
+
         return [
             # 表单帮助信息
             {"用户名": "用户不存在"},
@@ -90,6 +114,17 @@ def handle_login(nClicks, nSubmit, values, remember_me):
                         content="密码错误",
                     )
                 },
+            )
+
+            # 登录日志记录
+            LoginLogs.add_log(
+                user_name=values["login-user-name"],
+                user_id=match_user.user_id,
+                ip=request.remote_addr,
+                browser=browser_info,
+                os=os_info,
+                status="密码错误",
+                login_datetime=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             )
 
             return [
@@ -126,6 +161,17 @@ def handle_login(nClicks, nSubmit, values, remember_me):
         set_props(
             "global-redirect",
             {"children": dcc.Location(pathname="/", id="global-redirect-target")},
+        )
+
+        # 登录日志记录
+        LoginLogs.add_log(
+            user_name=match_user.user_name,
+            user_id=match_user.user_id,
+            ip=request.remote_addr,
+            browser=browser_info,
+            os=os_info,
+            status="登录成功",
+            login_datetime=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         )
 
     return [{}, {}]
