@@ -43,7 +43,7 @@ class LoginLogs(BaseModel):
         cls,
         limit: int = None,
         offset: int = None,
-        order_by: Literal["id", "user_name", "login_datetime"] = "id",
+        order_by: Literal["id", "user_name", "status", "login_datetime"] = "id",
         order: Literal["ascend", "descend"] = "descend",
     ):
         """条件性获取日志记录"""

@@ -73,7 +73,12 @@ def render():
                         tableLayout="fixed",
                         rowSelectionType="checkbox",
                         sortOptions={
-                            "sortDataIndexes": ["id", "user_name", "login_datetime"],
+                            "sortDataIndexes": [
+                                "id",
+                                "user_name",
+                                "status",
+                                "login_datetime",
+                            ],
                         },
                         title=fac.AntdSpace(
                             [
