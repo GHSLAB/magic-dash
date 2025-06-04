@@ -25,10 +25,8 @@ class AuthConfig:
         "normal": {
             "type": "exclude",
             "keys": [
-                "/core/sub-menu-page3",
-                "/core/independent-page",
-                "/core/independent-page/demo",
-                "/core/other-page1",
+                # 常规用户禁止访问系统管理相关页面
+                "/core/login-logs",
             ],
         },
         # "normal": {"type": "include", "keys": ["/core/page2", "/core/page5"]},
