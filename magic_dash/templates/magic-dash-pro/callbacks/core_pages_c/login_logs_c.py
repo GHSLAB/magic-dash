@@ -137,22 +137,40 @@ def handle_login_logs_export_data(confirmCounts):
     # 查询全部数据记录
     all_login_logs = pd.DataFrame(LoginLogs.get_logs())
 
-    # 处理登录时间字段格式
-    all_login_logs["login_datetime"] = all_login_logs["login_datetime"].dt.strftime(
-        "%Y-%m-%d %H:%M:%S"
-    )
+    # 若登录日志记录不为空
+    if not all_login_logs.empty:
+        # 处理登录时间字段格式
+        all_login_logs["login_datetime"] = all_login_logs["login_datetime"].dt.strftime(
+            "%Y-%m-%d %H:%M:%S"
+        )
 
-    # 返回下载文件流
-    set_props(
-        "global-download",
-        {
-            "data": dcc.send_data_frame(
-                all_login_logs.to_csv,
-                "登录日志导出结果{}.csv".format(
-                    datetime.now().strftime("%Y%m%d%H%M%S")
-                ),
-                index=False,
-                encoding="utf-8",
-            )
-        },
-    )
+        # 返回下载文件流
+        set_props(
+            "global-download",
+            {
+                "data": dcc.send_data_frame(
+                    all_login_logs.to_csv,
+                    "登录日志导出结果{}.csv".format(
+                        datetime.now().strftime("%Y%m%d%H%M%S")
+                    ),
+                    index=False,
+                    encoding="utf-8",
+                )
+            },
+        )
+        # 消息提示
+        set_props(
+            "global-message",
+            {
+                "children": fac.AntdMessage(
+                    type="success", content="登录日志记录导出成功"
+                )
+            },
+        )
+
+    else:
+        # 消息提示
+        set_props(
+            "global-message",
+            {"children": fac.AntdMessage(type="warning", content="当前无登录日志记录")},
+        )
