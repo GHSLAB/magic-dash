@@ -38,6 +38,7 @@ def render():
                             {
                                 "dataIndex": "user_id",
                                 "title": "登录用户id",
+                                "hidden": True,
                             },
                             {
                                 "dataIndex": "ip",
@@ -71,6 +72,9 @@ def render():
                         bordered=True,
                         tableLayout="fixed",
                         rowSelectionType="checkbox",
+                        sortOptions={
+                            "sortDataIndexes": ["id", "user_name", "login_datetime"],
+                        },
                         title=fac.AntdSpace(
                             [
                                 fac.AntdButton(

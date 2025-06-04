@@ -15,17 +15,27 @@ from models.logs import LoginLogs
     [
         Input("core-login-logs-table-init-data-trigger", "timeoutCount"),
         Input("core-login-logs-table", "pagination"),
+        Input("core-login-logs-table", "sorter"),
     ],
     prevent_initial_call=True,
 )
-def handle_login_logs_table_data_load(timeoutCount, pagination):
+def handle_login_logs_table_data_load(timeoutCount, pagination, sorter):
     """处理登录日志表数据加载"""
 
     # 查询登录日志数据
-    match_login_logs = LoginLogs.get_logs(
-        limit=pagination["pageSize"],
-        offset=(pagination["current"] - 1) * pagination["pageSize"],
-    )
+    # 若存在有效排序条件
+    if sorter and sorter["columns"]:
+        match_login_logs = LoginLogs.get_logs(
+            limit=pagination["pageSize"],
+            offset=(pagination["current"] - 1) * pagination["pageSize"],
+            order_by=sorter["columns"][0],
+            order=sorter["orders"][0],
+        )
+    else:
+        match_login_logs = LoginLogs.get_logs(
+            limit=pagination["pageSize"],
+            offset=(pagination["current"] - 1) * pagination["pageSize"],
+        )
 
     return [
         {

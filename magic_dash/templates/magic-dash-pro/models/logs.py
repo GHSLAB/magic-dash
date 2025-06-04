@@ -44,7 +44,7 @@ class LoginLogs(BaseModel):
         limit: int = None,
         offset: int = None,
         order_by: Literal["id", "user_name", "login_datetime"] = "id",
-        order: Literal["asc", "desc"] = "desc",
+        order: Literal["ascend", "descend"] = "descend",
     ):
         """条件性获取日志记录"""
 
@@ -53,7 +53,7 @@ class LoginLogs(BaseModel):
             query = cls.select()
             # 若排序条件有效
             if order_by and order:
-                if order == "asc":
+                if order == "ascend":
                     query = query.order_by(getattr(cls, order_by))
                 else:
                     query = query.order_by(getattr(cls, order_by).desc())
