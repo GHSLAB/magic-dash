@@ -113,7 +113,14 @@ def core_router(
 
     # 若当前目标pathname不合法
     if pathname not in RouterConfig.valid_pathnames.keys():
-        return _404.render(), pathname, dash.no_update
+        return [
+            _404.render(),
+            pathname,
+            dash.no_update,
+            dash.no_update,
+            dash.no_update,
+            dash.no_update,
+        ]
 
     # 仅单页面形式下为骨架屏动画添加额外效果持续时间
     if page_config["core_layout_type"] == "single":
