@@ -45,12 +45,16 @@ class LoginLogs(BaseModel):
         offset: int = None,
         order_by: Literal["id", "user_name", "status", "login_datetime"] = "id",
         order: Literal["ascend", "descend"] = "descend",
+        user_name_keyword: str = None,
     ):
         """条件性获取日志记录"""
 
         with db.connection_context():
             # 构造查询
             query = cls.select()
+            # 若用户名关键词检索条件有效
+            if user_name_keyword:
+                query = query.where(cls.user_name.contains(user_name_keyword))
             # 若排序条件有效
             if order_by and order:
                 if order == "ascend":

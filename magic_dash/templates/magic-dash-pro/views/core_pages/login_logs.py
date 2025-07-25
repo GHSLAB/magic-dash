@@ -68,7 +68,7 @@ def render():
                             "pageSize": 10,
                             "showSizeChanger": False,
                         },
-                        mode="server-side",
+                        mode="server-side",  # 使用服务端数据分页模式
                         bordered=True,
                         tableLayout="fixed",
                         rowSelectionType="checkbox",
@@ -79,6 +79,11 @@ def render():
                                 "status",
                                 "login_datetime",
                             ],
+                        },
+                        filterOptions={
+                            "user_name": {
+                                "filterMode": "keyword",
+                            }
                         },
                         title=fac.AntdSpace(
                             [

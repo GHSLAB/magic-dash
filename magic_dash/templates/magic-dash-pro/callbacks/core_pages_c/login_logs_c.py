@@ -16,26 +16,32 @@ from models.logs import LoginLogs
         Input("core-login-logs-table-init-data-trigger", "timeoutCount"),
         Input("core-login-logs-table", "pagination"),
         Input("core-login-logs-table", "sorter"),
+        Input("core-login-logs-table", "filter"),
     ],
     prevent_initial_call=True,
 )
-def handle_login_logs_table_data_load(timeoutCount, pagination, sorter):
+def handle_login_logs_table_data_load(timeoutCount, pagination, sorter, _filter):
     """处理登录日志表数据加载"""
 
-    # 查询登录日志数据
+    # 为本次查询构造查询条件
+    query_condition = {}
+
     # 若存在有效排序条件
     if sorter and sorter["columns"]:
-        match_login_logs = LoginLogs.get_logs(
-            limit=pagination["pageSize"],
-            offset=(pagination["current"] - 1) * pagination["pageSize"],
-            order_by=sorter["columns"][0],
-            order=sorter["orders"][0],
-        )
-    else:
-        match_login_logs = LoginLogs.get_logs(
-            limit=pagination["pageSize"],
-            offset=(pagination["current"] - 1) * pagination["pageSize"],
-        )
+        query_condition["order_by"] = sorter["columns"][0]
+        query_condition["order"] = sorter["orders"][0]
+
+    # 若存在有效筛选条件
+    if _filter:
+        if _filter.get("user_name"):
+            query_condition["user_name_keyword"] = _filter["user_name"][0]
+
+    # 获取登录日志数据
+    match_login_logs = LoginLogs.get_logs(
+        limit=pagination["pageSize"],
+        offset=(pagination["current"] - 1) * pagination["pageSize"],
+        **query_condition,  # 传入实际查询条件
+    )
 
     return [
         {
