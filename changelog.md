@@ -1,5 +1,38 @@
 # 更新日志
 
+## 0.4.0版本
+
+### 变化
+
+- 内置各模板环境依赖`requirements.txt`更新，现已全面升级并兼容`Dash 3.x`版本，具体见：
+  - [simple-tool](./magic_dash/templates/simple-tool/requirements.txt)
+  - [magic-dash](./magic_dash/templates/magic-dash/requirements.txt)
+  - [magic-dash-pro](./magic_dash/templates/magic-dash-pro/requirements.txt)
+
+### 新增
+
+- `magic-dash`、`magic-dash-pro`模板新增**url参数提取**功能示范页面，对应`views/core_pages/url_params_page.py`：
+
+<p align="center">
+    <img src="./imgs/changelog/0.4.0/url参数提取示例演示.png"></img>
+</p>
+
+- `magic-dash-pro`模板新增**系统管理-日志管理-登录日志**功能页面，主要逻辑对应`models/logs.py`、`views/core_pages/login_logs.py`、`callbacks/core_pages_c/login_logs_c.py`：
+
+<p align="center">
+    <img src="./imgs/changelog/0.4.0/系统管理-日志管理-登录日志演示.png"></img>
+</p>
+
+---
+
+## 0.3.3版本
+
+### 修复
+
+- `magic-dash-pro`模板修复了上个版本中`configs/base_config.py`的`duplicate_login_check_interval`配置项数值设定错误问题
+
+---
+
 ## 0.3.2版本
 
 ### 新增
@@ -59,9 +92,6 @@ fullscreen_watermark_generator: Callable = (
 ### 变化
 
 - 内置各模板环境依赖`requirements.txt`更新，具体见：
-
   - [simple-tool](./magic_dash/templates/simple-tool/requirements.txt)
-
   - [magic-dash](./magic_dash/templates/magic-dash/requirements.txt)
-
   - [magic-dash-pro](./magic_dash/templates/magic-dash-pro/requirements.txt)
