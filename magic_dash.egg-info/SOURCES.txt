@@ -35,6 +35,7 @@ magic_dash/templates/magic-dash-pro/assets/videos/login-bg.mp4
 magic_dash/templates/magic-dash-pro/callbacks/__init__.py
 magic_dash/templates/magic-dash-pro/callbacks/login_c.py
 magic_dash/templates/magic-dash-pro/callbacks/core_pages_c/__init__.py
+magic_dash/templates/magic-dash-pro/callbacks/core_pages_c/login_logs_c.py
 magic_dash/templates/magic-dash-pro/callbacks/core_pages_c/page1_c.py
 magic_dash/templates/magic-dash-pro/components/__init__.py
 magic_dash/templates/magic-dash-pro/components/core_side_menu.py
@@ -49,6 +50,7 @@ magic_dash/templates/magic-dash-pro/configs/router_config.py
 magic_dash/templates/magic-dash-pro/models/__init__.py
 magic_dash/templates/magic-dash-pro/models/exceptions.py
 magic_dash/templates/magic-dash-pro/models/init_db.py
+magic_dash/templates/magic-dash-pro/models/logs.py
 magic_dash/templates/magic-dash-pro/models/users.py
 magic_dash/templates/magic-dash-pro/utils/clear_pycache.py
 magic_dash/templates/magic-dash-pro/views/__init__.py
@@ -59,10 +61,12 @@ magic_dash/templates/magic-dash-pro/views/core_pages/independent_page_demo.py
 magic_dash/templates/magic-dash-pro/views/core_pages/independent_wildcard_page.py
 magic_dash/templates/magic-dash-pro/views/core_pages/independent_wildcard_page_demo.py
 magic_dash/templates/magic-dash-pro/views/core_pages/index.py
+magic_dash/templates/magic-dash-pro/views/core_pages/login_logs.py
 magic_dash/templates/magic-dash-pro/views/core_pages/page1.py
 magic_dash/templates/magic-dash-pro/views/core_pages/sub_menu_page1.py
 magic_dash/templates/magic-dash-pro/views/core_pages/sub_menu_page2.py
 magic_dash/templates/magic-dash-pro/views/core_pages/sub_menu_page3.py
+magic_dash/templates/magic-dash-pro/views/core_pages/url_params_page.py
 magic_dash/templates/magic-dash-pro/views/status_pages/_403.py
 magic_dash/templates/magic-dash-pro/views/status_pages/_404.py
 magic_dash/templates/magic-dash-pro/views/status_pages/_500.py
@@ -96,6 +100,7 @@ magic_dash/templates/magic-dash/views/core_pages/page1.py
 magic_dash/templates/magic-dash/views/core_pages/sub_menu_page1.py
 magic_dash/templates/magic-dash/views/core_pages/sub_menu_page2.py
 magic_dash/templates/magic-dash/views/core_pages/sub_menu_page3.py
+magic_dash/templates/magic-dash/views/core_pages/url_params_page.py
 magic_dash/templates/magic-dash/views/status_pages/_404.py
 magic_dash/templates/magic-dash/views/status_pages/_500.py
 magic_dash/templates/magic-dash/views/status_pages/__init__.py
