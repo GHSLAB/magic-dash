@@ -96,6 +96,7 @@ def open_user_manage_drawer(nClicks, clickedKey):
         State("core-side-menu", "inlineCollapsed"),
         State("core-url", "href"),
     ],
+    running=[[Output("layout-top-progress", "spinning"), True, False]],
 )
 def core_router(
     pathname,

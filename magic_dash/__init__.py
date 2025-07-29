@@ -2,7 +2,7 @@ import os
 import click
 import shutil
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 
 # 现有内置项目模板信息
 BUILTIN_TEMPLATES = {

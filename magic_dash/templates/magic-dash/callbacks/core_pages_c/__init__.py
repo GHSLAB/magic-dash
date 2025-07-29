@@ -83,6 +83,7 @@ app.clientside_callback(
         State("core-side-menu", "inlineCollapsed"),
         State("core-url", "href"),
     ],
+    running=[[Output("layout-top-progress", "spinning"), True, False]],
 )
 def core_router(
     pathname,

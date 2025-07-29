@@ -25,7 +25,7 @@ check_dependencies_version(
     rules=[
         {"name": "dash", "specifier": ">=3.1.1,<4.0.0"},
         {"name": "feffery_antd_components", "specifier": ">=0.4.0,<0.5.0"},
-        {"name": "feffery_utils_components", "specifier": ">=0.3.0,<0.4.0"},
+        {"name": "feffery_utils_components", "specifier": ">=0.3.2,<0.4.0"},
         {"name": "feffery_dash_utils", "specifier": ">=0.2.6"},
     ]
 )
@@ -59,10 +59,10 @@ app.layout = lambda: fuc.FefferyTopProgress(
             id="root-container",
         ),
     ],
-    listenPropsMode="include",
-    includeProps=["root-container.children", "core-container.children"],
+    id="layout-top-progress",
     minimum=0.33,
     color="#1677ff",
+    manual=True,
 )
 
 
@@ -83,6 +83,7 @@ def handle_root_router_error(e):
     State("root-url", "trigger"),
     prevent_initial_call=True,
     on_error=handle_root_router_error,
+    running=[[Output("layout-top-progress", "spinning"), True, False]],
 )
 def root_router(pathname, trigger):
     """根节点路由控制"""
