@@ -20,4 +20,6 @@ if __name__ == "__main__":
         password_hash=generate_password_hash("admin123"),
         user_role=AuthConfig.admin_role,
     )
-    print("管理员用户 \033[93madmin\033[0m 初始化完成")
+    print(
+        "管理员用户 \033[93madmin\033[0m 初始化完成，初始密码：\033[93madmin123\033[0m"
+    )
