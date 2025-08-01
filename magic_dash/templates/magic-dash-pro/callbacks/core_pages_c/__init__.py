@@ -177,7 +177,7 @@ def core_router(
         page_content = login_logs.render()
 
     ### ADD_PAGE 逻辑插入位置
-    ### NEW_PAGE_TARGE
+    ### NEW_PAGE_TARGET
 
     # 多标签页形式
     if page_config.get("core_layout_type") == "tabs":
