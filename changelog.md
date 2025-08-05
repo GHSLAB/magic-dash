@@ -1,5 +1,21 @@
 # 更新日志
 
+## 0.4.1版本
+
+### 变化
+
+- 各内置项目模板`feffery-utils-components`依赖版本规则更新至`>=0.3.2`，以优化部分情况下顶端进度条显示异常的问题，涉及项目变动：
+  - [041b787](https://github.com/CNFeffery/magic-dash/commit/041b78770b95eb7478ad9afbf6249313664468ae)
+  - [fa3242f](https://github.com/CNFeffery/magic-dash/commit/fa3242fd2d1f522b07158032d4328e325074b08f)
+
+### 优化
+
+- 针对内置模板`magic-dash-pro`数据库初始化命令`python -m models.init_db`进行优化
+  - [59df478](https://github.com/CNFeffery/magic-dash/commit/59df4784c680425e6706a8892f87cc67c32d13b2)
+  - [bf58493](https://github.com/CNFeffery/magic-dash/commit/bf58493aa4c5f3a44f86377099ed4e48a8be88f9)
+
+---
+
 ## 0.4.0版本
 
 ### 变化

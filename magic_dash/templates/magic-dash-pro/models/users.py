@@ -99,6 +99,16 @@ class Users(BaseModel):
                 cls.delete().where(cls.user_id == user_id).execute()
 
     @classmethod
+    def truncate_users(cls, execute: bool = False):
+        """清空用户，请小心使用"""
+
+        # 若保险参数execute=True
+        if execute:
+            with db.connection_context():
+                with db.atomic():
+                    cls.delete().execute()
+
+    @classmethod
     def update_user(cls, user_id: str, **kwargs):
         """更新用户信息"""
 
