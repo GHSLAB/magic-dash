@@ -258,7 +258,6 @@ lambda current_user: current_user.user_name
 
 ### 快速添加页面
 
-
 ```cmd
 python utils/add_page.py --name PagaName
 ```
