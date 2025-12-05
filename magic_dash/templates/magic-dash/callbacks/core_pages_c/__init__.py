@@ -1,21 +1,11 @@
 import time
 import dash
 from dash import Patch
-import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State, ClientsideFunction
 
 from server import app
 from views.status_pages import _404
-from views.core_pages import (
-    index,
-    page1,
-    sub_menu_page1,
-    sub_menu_page2,
-    sub_menu_page3,
-    independent_page,
-    independent_wildcard_page,
-    url_params_page,
-)
+from components import page_content  # 页面内容渲染
 
 # 路由配置参数
 from configs import RouterConfig
@@ -108,54 +98,6 @@ def core_router(
         # 增加一点加载动画延迟^_^
         time.sleep(0.5)
 
-    # 初始化页面返回内容
-    page_content = fac.AntdAlert(
-        type="warning",
-        showIcon=True,
-        message=f"这里是{pathname}",
-        description="该页面尚未进行开发哦🤔~",
-    )
-
-    # 以首页做简单示例
-    if pathname == "/":
-        # 更新页面返回内容
-        page_content = index.render()
-
-    # 以主要页面1做简单示例
-    elif pathname == "/core/page1":
-        # 更新页面返回内容
-        page_content = page1.render()
-
-    # 以子菜单演示1做简单示例
-    elif pathname == "/core/sub-menu-page1":
-        # 更新页面返回内容
-        page_content = sub_menu_page1.render()
-
-    # 以子菜单演示2做简单示例
-    elif pathname == "/core/sub-menu-page2":
-        # 更新页面返回内容
-        page_content = sub_menu_page2.render()
-
-    # 以子菜单演示3做简单示例
-    elif pathname == "/core/sub-menu-page3":
-        # 更新页面返回内容
-        page_content = sub_menu_page3.render()
-
-    # 以独立页面做简单示例
-    elif pathname == "/core/independent-page":
-        # 更新页面返回内容
-        page_content = independent_page.render()
-
-    # 以独立通配页面做简单示例
-    elif pathname == "/core/independent-wildcard-page":
-        # 更新页面返回内容
-        page_content = independent_wildcard_page.render()
-
-    # 以url参数提取页面做简单示例
-    elif pathname == "/core/url-params-page":
-        # 更新页面返回内容
-        page_content = url_params_page.render(current_url=current_url)
-
     # 多标签页形式
     if page_config.get("core_layout_type") == "tabs":
         # 基于Patch进行标签页子项远程映射更新
@@ -171,7 +113,9 @@ def core_router(
                     {
                         "label": "首页",
                         "key": "/",
-                        "children": index.render(),
+                        "children": page_content.render(
+                            pathname="/", current_url=current_url
+                        ),
                         "closable": False,
                         "contextMenu": [
                             {"key": key, "label": key}
@@ -185,7 +129,9 @@ def core_router(
                         {
                             "label": "首页",
                             "key": "/",
-                            "children": index.render(),
+                            "children": page_content.render(
+                                pathname="/", current_url=current_url
+                            ),
                             "closable": False,
                             "contextMenu": [
                                 {"key": key, "label": key}
@@ -195,7 +141,9 @@ def core_router(
                         {
                             "label": RouterConfig.valid_pathnames[pathname],
                             "key": pathname,
-                            "children": page_content,
+                            "children": page_content.render(
+                                pathname=pathname, current_url=current_url
+                            ),
                             "contextMenu": [
                                 {"key": key, "label": key}
                                 for key in [
@@ -225,7 +173,9 @@ def core_router(
                         {
                             "label": RouterConfig.valid_pathnames[pathname],
                             "key": pathname,
-                            "children": page_content,
+                            "children": page_content.render(
+                                pathname=pathname, current_url=current_url
+                            ),
                             "contextMenu": [
                                 {"key": key, "label": key}
                                 for key in [
@@ -263,7 +213,7 @@ def core_router(
 
     # 单页面形式
     return [
-        page_content,
+        page_content.render(pathname=pathname, current_url=current_url),
         # 当前模式下不操作items
         dash.no_update,
         # 当前模式下不操作activeKey
