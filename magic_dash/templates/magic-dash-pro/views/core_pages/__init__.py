@@ -414,12 +414,21 @@ def render(current_user_access_rule: str, current_pathname: str = None):
                             )
                             if LayoutConfig.core_layout_type == "single"
                             # 多标签页形式
-                            else fac.AntdTabs(
-                                id="core-container",
-                                items=[],
-                                type="editable-card",
-                                size="small",
-                                style=style(padding="6px 12px"),
+                            else fac.Fragment(
+                                [
+                                    # 多标签页形式，session生命周期内标签页key值缓存
+                                    dcc.Store(
+                                        id="core-container-tab-item-keys-cache",
+                                        storage_type="session",
+                                    ),
+                                    fac.AntdTabs(
+                                        id="core-container",
+                                        items=[],
+                                        type="editable-card",
+                                        size="small",
+                                        style=style(padding="6px 12px"),
+                                    ),
+                                ]
                             )
                         ),
                         flex="auto",

@@ -80,6 +80,7 @@ def open_user_manage_drawer(nClicks, clickedKey):
     [Input("core-url", "pathname"), Input("core-container", "activeKey")],
     [
         State("core-container", "itemKeys"),
+        State("core-container-tab-item-keys-cache", "data", allow_optional=True),
         State("core-page-config", "data"),
         State("core-side-menu", "inlineCollapsed"),
         State("core-url", "href"),
@@ -90,6 +91,7 @@ def core_router(
     pathname,
     tabs_active_key,
     tabs_item_keys,
+    tabs_item_keys_cache,
     page_config,
     side_menu_inline_collapsed,
     current_url,
@@ -125,25 +127,19 @@ def core_router(
 
         # 若标签页子项此前为空，即初始化加载
         if not tabs_item_keys:
-            # 根据当前目标标签页，处理标签页子项的追加操作
-            if pathname in ["/", RouterConfig.index_pathname]:
-                p.append(
-                    {
-                        "label": "首页",
-                        "key": "/",
-                        "children": page_content.render(
-                            pathname="/", current_url=current_url
-                        ),
-                        "closable": False,
-                        "contextMenu": [
-                            {"key": key, "label": key}
-                            for key in ["关闭其他", "刷新页面"]
-                        ],
-                    }
-                )
-            else:
-                p.extend(
-                    [
+            # 处理session生命周期内，标签页key值缓存的还原
+            tabs_item_keys = tabs_item_keys_cache or ["/"]
+            # 处理新标签页追加
+            if (
+                pathname not in ["/", RouterConfig.index_pathname]
+                and pathname not in tabs_item_keys
+            ):
+                tabs_item_keys.append(pathname)
+
+            # 基于tabs_item_keys构造标签页子项
+            for item_key in tabs_item_keys:
+                if item_key == "/":
+                    p.append(
                         {
                             "label": "首页",
                             "key": "/",
@@ -156,11 +152,14 @@ def core_router(
                                 for key in ["关闭其他", "刷新页面"]
                             ],
                         },
+                    )
+                else:
+                    p.append(
                         {
-                            "label": RouterConfig.valid_pathnames[pathname],
-                            "key": pathname,
+                            "label": RouterConfig.valid_pathnames[item_key],
+                            "key": item_key,
                             "children": page_content.render(
-                                pathname=pathname, current_url=current_url
+                                pathname=item_key, current_url=current_url
                             ),
                             "contextMenu": [
                                 {"key": key, "label": key}
@@ -172,8 +171,7 @@ def core_router(
                                 ]
                             ],
                         },
-                    ]
-                )
+                    )
 
             next_active_key = pathname
             next_current_key = pathname
@@ -242,6 +240,16 @@ def core_router(
         dash.no_update,
     ]
 
+
+app.clientside_callback(
+    """
+(itemKeys) => {
+    return itemKeys || [];
+}
+    """,
+    Output("core-container-tab-item-keys-cache", "data"),
+    Input("core-container", "itemKeys"),
+)
 
 app.clientside_callback(
     ClientsideFunction(
