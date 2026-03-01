@@ -4,8 +4,8 @@ import feffery_antd_components as fac
 import feffery_utils_components as fuc
 from feffery_dash_utils.style_utils import style
 
-from components import core_side_menu
 from configs import BaseConfig, RouterConfig, LayoutConfig
+from components import core_side_menu, version_changelog_modal
 from views.core_pages import independent_page_demo, independent_wildcard_page_demo
 
 # 令绑定的回调函数子模块生效
@@ -88,6 +88,8 @@ def render(current_pathname: str = None):
             fuc.FefferyFullscreen(
                 id="core-fullscreen",
             ),
+            # 版本更新日志通知
+            version_changelog_modal.render(),
             # 页首
             fac.AntdRow(
                 [
