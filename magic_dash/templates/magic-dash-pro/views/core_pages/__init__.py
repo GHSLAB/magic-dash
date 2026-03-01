@@ -7,7 +7,13 @@ from feffery_dash_utils.style_utils import style
 
 from configs import BaseConfig, RouterConfig, LayoutConfig, AuthConfig
 from views.core_pages import independent_page_demo, independent_wildcard_page_demo
-from components import core_side_menu, personal_info, user_manage, department_manage
+from components import (
+    core_side_menu,
+    personal_info,
+    user_manage,
+    department_manage,
+    version_changelog_modal,
+)
 
 # 令绑定的回调函数子模块生效
 import callbacks.core_pages_c  # noqa: F401
@@ -124,6 +130,8 @@ def render(current_user_access_rule: str, current_pathname: str = None):
                 if current_user.user_role == AuthConfig.admin_role
                 else []
             ),
+            # 版本更新日志通知
+            version_changelog_modal.render(),
             # 页首
             fac.AntdRow(
                 [
