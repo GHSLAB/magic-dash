@@ -11,6 +11,7 @@ from rich.text import Text
 
 __version__ = "0.5.0rc2"
 
+
 # 创建rich console实例
 console = Console()
 
@@ -159,18 +160,19 @@ def _create(name, path):
         dst=os.path.join(path, name),
     )
 
-    # 替换版本号
-    base_config_path = os.path.join(path, name, "configs", "base_config.py")
-    if os.path.exists(base_config_path):
-        with open(base_config_path, "r", encoding="utf-8") as f:
-            content = f.read()
-        content = re.sub(
-            r'app_version: str = "[^"]*"',
-            f'app_version: str = "{__version__}"',
-            content,
-        )
-        with open(base_config_path, "w", encoding="utf-8") as f:
-            f.write(content)
+    # 替换版本号 (仅 magic-dash 系列模板)
+    if name in ("magic-dash", "magic-dash-pro"):
+        base_config_path = os.path.join(path, name, "configs", "base_config.py")
+        if os.path.exists(base_config_path):
+            with open(base_config_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            content = re.sub(
+                r'app_version: str = "[^"]*"',
+                f'app_version: str = "{__version__}"',
+                content,
+            )
+            with open(base_config_path, "w", encoding="utf-8") as f:
+                f.write(content)
 
     # 重命名项目
     os.rename(

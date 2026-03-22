@@ -8,7 +8,7 @@ class BaseConfig:
     app_title: str = "Magic Dash Pro"
 
     # 应用版本
-    app_version: str = "0.5.0"
+    app_version: str = "dev"
 
     # 是否启用版本更新日志通知功能，每次的新版本更新日志将在用户点击“已阅”按钮后不再重复展示
     enable_version_changelog_modal: bool = False
@@ -53,8 +53,8 @@ class BaseConfig:
     enable_fullscreen_watermark: bool = False
 
     # 当开启了全屏额外水印功能时，用于动态处理实际水印内容输出
-    fullscreen_watermark_generator: Callable = (
-        lambda current_user: current_user.user_name
+    fullscreen_watermark_generator: Callable = lambda current_user: (
+        current_user.user_name
     )
 
     # 用于登录密码加密传输的RSA公钥文件路径

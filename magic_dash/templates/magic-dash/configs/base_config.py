@@ -8,7 +8,7 @@ class BaseConfig:
     app_title: str = "Magic Dash"
 
     # 应用版本
-    app_version: str = "0.5.0"
+    app_version: str = "dev"
 
     # 是否启用版本更新日志通知功能，每次的新版本更新日志将在用户点击“已阅”按钮后不再重复展示
     enable_version_changelog_modal: bool = False
