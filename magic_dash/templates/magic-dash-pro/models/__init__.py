@@ -1,6 +1,6 @@
 from peewee import SqliteDatabase, Model
 from feffery_dash_utils.version_utils import check_dependencies_version
-from playhouse.pool import PooledPostgresqlExtDatabase, PooledMySQLDatabase
+from playhouse.pool import PooledPostgresqlDatabase, PooledMySQLDatabase
 
 from configs.database_config import DatabaseConfig
 
@@ -19,7 +19,7 @@ def get_db():
         )
 
         # 返回postgresql类型连接池对象
-        return PooledPostgresqlExtDatabase(
+        return PooledPostgresqlDatabase(
             host=DatabaseConfig.postgresql_config["host"],
             port=DatabaseConfig.postgresql_config["port"],
             user=DatabaseConfig.postgresql_config["user"],
