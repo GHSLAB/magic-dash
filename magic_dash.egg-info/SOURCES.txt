@@ -14,6 +14,8 @@ magic_dash/templates/magic-dash/app.py
 magic_dash/templates/magic-dash/requirements.txt
 magic_dash/templates/magic-dash/server.py
 magic_dash/templates/magic-dash-pro/app.py
+magic_dash/templates/magic-dash-pro/magic_dash_pro_private_key.pem
+magic_dash/templates/magic-dash-pro/magic_dash_pro_public_key.pem
 magic_dash/templates/magic-dash-pro/requirements.txt
 magic_dash/templates/magic-dash-pro/server.py
 magic_dash/templates/magic-dash-pro/assets/favicon.ico
@@ -43,6 +45,7 @@ magic_dash/templates/magic-dash-pro/components/department_manage.py
 magic_dash/templates/magic-dash-pro/components/page_content.py
 magic_dash/templates/magic-dash-pro/components/personal_info.py
 magic_dash/templates/magic-dash-pro/components/user_manage.py
+magic_dash/templates/magic-dash-pro/components/version_changelog_modal.py
 magic_dash/templates/magic-dash-pro/configs/__init__.py
 magic_dash/templates/magic-dash-pro/configs/auth_config.py
 magic_dash/templates/magic-dash-pro/configs/base_config.py
@@ -56,6 +59,7 @@ magic_dash/templates/magic-dash-pro/models/init_db.py
 magic_dash/templates/magic-dash-pro/models/logs.py
 magic_dash/templates/magic-dash-pro/models/users.py
 magic_dash/templates/magic-dash-pro/utils/clear_pycache.py
+magic_dash/templates/magic-dash-pro/utils/crypto_utils.py
 magic_dash/templates/magic-dash-pro/views/__init__.py
 magic_dash/templates/magic-dash-pro/views/login.py
 magic_dash/templates/magic-dash-pro/views/core_pages/__init__.py
@@ -88,6 +92,7 @@ magic_dash/templates/magic-dash/callbacks/core_pages_c/page1_c.py
 magic_dash/templates/magic-dash/components/__init__.py
 magic_dash/templates/magic-dash/components/core_side_menu.py
 magic_dash/templates/magic-dash/components/page_content.py
+magic_dash/templates/magic-dash/components/version_changelog_modal.py
 magic_dash/templates/magic-dash/configs/__init__.py
 magic_dash/templates/magic-dash/configs/base_config.py
 magic_dash/templates/magic-dash/configs/layout_config.py

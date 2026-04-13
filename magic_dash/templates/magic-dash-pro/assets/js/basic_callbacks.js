@@ -69,7 +69,7 @@ window.dash_clientside = Object.assign({}, window.dash_clientside, {
         // 处理多标签页形式下的标签页关闭操作
         handleCoreTabsClose: (tabCloseCounts, clickedContextMenu, latestDeletePane, items) => {
             // 获取本次回调触发来源信息
-            callbackTriggered = window.dash_clientside.callback_context.triggered[0];
+            let callbackTriggered = window.dash_clientside.callback_context.triggered[0];
 
             // 若本次回调由标签页标题右键菜单操作触发
             if (callbackTriggered.prop_id.endsWith('clickedContextMenu')) {
