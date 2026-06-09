@@ -1,0 +1,22 @@
+[project]
+name = "magic-dash-pro-fastapi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "cryptography>=48.0.0",
+    "dash[fastapi]>=4.2.0,<5.0.0",
+    "fastapi-login>=1.10.3",
+    "fastapi-offline>=1.7.6",
+    "feffery-antd-components>=0.4.4,<0.5.0",
+    "feffery-dash-utils>=0.2.6",
+    "feffery-markdown-components>=0.4.3",
+    "feffery-utils-components>=0.3.6,<0.4.0",
+    "peewee>=4.0.0",
+    "questionary>=2.1.1",
+    "rich>=15.0.0",
+    "user-agents>=2.2.0",
+    "werkzeug>=3.1.8",
+    "yarl>=1.24.2",
+]
