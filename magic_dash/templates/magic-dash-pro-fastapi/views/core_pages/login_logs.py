@@ -72,6 +72,7 @@ def render():
                         bordered=True,
                         tableLayout="fixed",
                         rowSelectionType="checkbox",
+                        rowSelectionWidth="60px",
                         sortOptions={
                             "sortDataIndexes": [
                                 "id",
