@@ -22,9 +22,9 @@ import callbacks.core_pages_c  # noqa: F401
 def get_page_search_options(current_user_access_rule: str):
     """当前模块内工具函数，生成页面搜索选项"""
 
-    options = [{"label": "首页", "value": "/"}]
+    options = [{"label": "首页", "value": RouterConfig.index_pathname}]
 
-    for pathname, title in RouterConfig.valid_pathnames.items():
+    for pathname, title in RouterConfig.menu_pathnames.items():
         # 忽略已添加的首页
         if pathname in [RouterConfig.index_pathname, "/"]:
             pass
