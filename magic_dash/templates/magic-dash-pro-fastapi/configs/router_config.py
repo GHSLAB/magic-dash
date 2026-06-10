@@ -21,6 +21,36 @@ def _extract_menu_items(menu_items: List[dict]) -> dict:
     return result
 
 
+def _extract_side_menu_open_keys(menu_items: List[dict]) -> dict:
+    """递归提取菜单项的 pathname -> 父级 SubMenu keys 列表映射"""
+    result = {}
+
+    def _walk(items: List[dict], parent_keys: List[str]):
+        for item in items:
+            component = item.get("component")
+            props = item.get("props", {})
+
+            if component == "Item":
+                key = props.get("key")
+                if key and isinstance(key, str) and parent_keys:
+                    result[key] = list(parent_keys)
+
+            elif component == "SubMenu":
+                sub_key = props.get("key")
+                children = item.get("children", [])
+                if sub_key:
+                    _walk(children, parent_keys + [sub_key])
+                else:
+                    _walk(children, parent_keys)
+
+            elif component == "ItemGroup":
+                children = item.get("children", [])
+                _walk(children, parent_keys)
+
+    _walk(menu_items, [])
+    return result
+
+
 class RouterConfig:
     """路由配置参数"""
 
@@ -86,6 +116,14 @@ class RouterConfig:
                                 "href": "/core/sub-menu-page3",
                             },
                         },
+                                                {
+                            "component": "Item",
+                            "props": {
+                                "key": "/core/sub-menu-page4",
+                                "title": "子菜单演示4",
+                                "href": "/core/sub-menu-page4",
+                            },
+                        },
                     ],
                 },
                 {
@@ -140,6 +178,16 @@ class RouterConfig:
                                 "icon": "antd-login",
                                 "href": "/core/login-logs",
                             },
+                            
+                        },                        {
+                            "component": "Item",
+                            "props": {
+                                "key": "/core/operation-logs",
+                                "title": "操作日志",
+                                "icon": "antd-history",
+                                "href": "/core/operation-logs",
+                            },
+                            
                         },
                     ],
                 },
@@ -203,10 +251,5 @@ class RouterConfig:
         "/500-demo",
     ]
 
-    # 部分页面pathname对应要展开的子菜单层级
-    side_menu_open_keys: dict = {
-        "/core/sub-menu-page1": ["子菜单演示"],
-        "/core/sub-menu-page2": ["子菜单演示"],
-        "/core/sub-menu-page3": ["子菜单演示"],
-        "/core/login-logs": ["日志管理"],
-    }
+    # 部分页面pathname对应要展开的子菜单层级（自动从 core_side_menu 提取）
+    side_menu_open_keys: dict = _extract_side_menu_open_keys(core_side_menu)
