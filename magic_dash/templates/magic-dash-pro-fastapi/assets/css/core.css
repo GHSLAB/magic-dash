@@ -36,3 +36,11 @@
 #core-side-menu .ant-menu-inline {
     background: none !important;
 }
+
+/* 侧边菜单 itemgroup 标题样式 */
+#core-side-menu .ant-menu-item-group-title {
+    /* font-size: 16px; */
+    color: #8c8c8c;
+    text-overflow: clip; /* 取消展开/折叠动画过程中的 ... 省略号，改为直接裁剪文字 */
+    padding:6px; /* 调整内边距固定折叠位置 */
+}

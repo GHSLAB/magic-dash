@@ -10,6 +10,9 @@ class LayoutConfig:
     # 核心页面呈现类型，可选项有'single'（单页面形式）、'tabs'（多标签页形式）
     core_layout_type: Literal["single", "tabs"] = "single"
 
+    # 核心页面页首样式，可选项有'default'（默认布局）、'full'（贯穿全宽布局）
+    core_header_style: Literal["default", "full"] = "full"
+
     # 是否在页首中显示页面搜索框
     show_core_page_search: bool = True
 
@@ -18,7 +21,7 @@ class LoginConfig:
     """登录页面相关配置参数"""
 
     # 登录页面布局风格，可选项有'center'（居中布局）、'right'（左右分割，登录框在右）
-    login_page_style: Literal["center", "right"] = "center"
+    login_page_style: Literal["center", "right"] = "right"
     # 登录卡片宽度（像素）
     login_card_width: int = 400
     # 登录页面背景内容形式，可选项有'image'（图片内容）、'video'（视频内容）

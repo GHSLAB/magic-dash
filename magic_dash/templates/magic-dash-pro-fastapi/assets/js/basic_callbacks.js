@@ -13,23 +13,29 @@ window.dash_clientside = Object.assign({}, window.dash_clientside, {
     clientside_basic: {
         // 处理核心页面侧边栏展开/收起
         handleSideCollapse: (nClicks, originIcon, originHeaderSideStyle, coreConfig) => {
+            // 是否为贯穿全宽布局（full布局下不折叠页首标题与logo组）
+            const isFullHeader = coreConfig.core_header_style === 'full';
             // 若先前为展开状态
             if (originIcon === 'antd-menu-fold') {
                 return [
                     // 更新图标
                     'antd-menu-unfold',
-                    // 更新页首侧边容器样式
-                    {
-                        ...originHeaderSideStyle,
-                        width: 110
-                    },
-                    // 更新页首标题样式
-                    {
-                        display: 'none'
-                    },
+                    // 更新页首侧边容器样式（full布局保持原样）
+                    isFullHeader
+                        ? dash_clientside.no_update
+                        : {
+                            ...originHeaderSideStyle,
+                            width: 88
+                        },
+                    // 更新页首标题样式（full布局保持原样）
+                    isFullHeader
+                        ? dash_clientside.no_update
+                        : {
+                            display: 'none'
+                        },
                     // 更新侧边菜单容器样式
                     {
-                        width: 110
+                        width: 88
                     },
                     // 更新侧边菜单折叠状态
                     true
@@ -38,13 +44,15 @@ window.dash_clientside = Object.assign({}, window.dash_clientside, {
                 return [
                     // 更新图标
                     'antd-menu-fold',
-                    // 更新页首侧边容器样式
-                    {
-                        ...originHeaderSideStyle,
-                        width: coreConfig.core_side_width
-                    },
-                    // 更新页首标题样式
-                    {},
+                    // 更新页首侧边容器样式（full布局保持原样）
+                    isFullHeader
+                        ? dash_clientside.no_update
+                        : {
+                            ...originHeaderSideStyle,
+                            width: coreConfig.core_side_width
+                        },
+                    // 更新页首标题样式（full布局保持原样）
+                    isFullHeader ? dash_clientside.no_update : {},
                     // 更新侧边菜单容器样式
                     {
                         width: coreConfig.core_side_width

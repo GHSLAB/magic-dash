@@ -48,6 +48,23 @@ def render(current_user_access_rule: str):
                         keep_empty_children_node=False,  # 去除children字段为空列表的节点
                     )
 
+    # 侧边菜单下方的折叠按钮（仅在full布局下显示，default布局下折叠按钮位于页首）
+    side_menu_collapse_button = (
+        fac.AntdButton(
+            fac.AntdIcon(
+                id="core-side-menu-collapse-button-icon",
+                icon="antd-menu-fold",
+                className="global-help-text",
+            ),
+            id="core-side-menu-collapse-button",
+            type="text",
+            block=True,
+            style=style(marginTop=8, padding=0),
+        )
+        if LayoutConfig.core_header_style == "full"
+        else None
+    )
+
     return fac.AntdAffix(
         fuc.FefferyDiv(
             [
@@ -56,8 +73,9 @@ def render(current_user_access_rule: str):
                     id="core-side-menu",
                     menuItems=current_menu_items,
                     mode="inline",
-                    style=style(border="none", width="100%"),
-                )
+                    style=style(border="none", width="100%", flex="auto"),
+                ),
+                side_menu_collapse_button,
             ],
             scrollbar="hidden",
             style=style(
@@ -65,6 +83,8 @@ def render(current_user_access_rule: str):
                 overflowY="auto",
                 borderRight="1px solid #dae0ea",
                 padding="0 8px",
+                display="flex",
+                flexDirection="column",
             ),
         ),
         id="core-side-menu-affix",
