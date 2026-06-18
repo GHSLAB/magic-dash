@@ -17,8 +17,16 @@
 
 ### 安装&更新
 
+- 最新正式版本
+
 ```bash
 pip install magic-dash -U
+```
+
+- 最新预发布版本
+
+```bash
+pip install magic-dash -U --pre
 ```
 
 查看当前安装版本：
@@ -69,6 +77,17 @@ http://127.0.0.1:8050
 
 更多命令细节见[`CLI`命令说明](./docs/cli.md)。
 
+### 内置模板公共静态资源
+
+`magic-dash-pro`相关模板共用的登录页视频和背景图片由包内`public_assets`统一维护。通过`magic-dash create`创建`magic-dash-pro`项目时，`CLI`会自动把这些资源复制到生成项目的`assets/`目录。
+
+源码开发时，可使用以下命令同步或清理内置模板目录下的公共静态资源副本：
+
+```bash
+magic-dash init-assets
+magic-dash remove-assets
+```
+
 ## 2 内置模板列表
 
 | 模板 | 适用场景 | 子文档入口 |
@@ -79,8 +98,8 @@ http://127.0.0.1:8050
 
 ## 3 反馈和社区
 
-- `GitHub`仓库：[CNFeffery/magic-dash](https://github.com/CNFeffery/magic-dash)
-- 问题反馈：[`GitHub Issues`](https://github.com/CNFeffery/magic-dash/issues)
+- `GitHub`仓库：[HogaStack/magic-dash](https://github.com/HogaStack/magic-dash)
+- 问题反馈：[`GitHub Issues`](https://github.com/HogaStack/magic-dash/issues)
 - `PyPI`发布页：[magic-dash](https://pypi.org/project/magic-dash/)
 - 作者邮箱：<fefferypzy@gmail.com>
 
